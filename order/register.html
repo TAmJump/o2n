@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>取引申請｜株式会社Next Innovation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&family=Noto+Serif+JP:wght@300;400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="portal.css">
+</head>
+<body>
+<div class="p-head">
+  <a href="../index.html" class="p-brand">Next <em>Innovation</em><span class="tag">Partner Portal</span></a>
+  <div class="right"><a href="login.html">ログイン →</a></div>
+</div>
+
+<div class="auth-wrap">
+  <div class="auth-card wide">
+    <div class="auth-eyebrow">Apply for Partnership</div>
+    <h1>取引申請</h1>
+    <p class="sub">サロン・販売店さま向けの取引申請フォームです。お申し込み後、当社にて内容を確認し、承認後にログイン情報をご案内します。</p>
+
+    <div id="refNote" class="note-box hidden"></div>
+    <div id="msg" class="msg hidden"></div>
+
+    <div id="form">
+      <div class="field">
+        <label>店舗・会社名 <span class="req">*</span></label>
+        <input type="text" id="salon" placeholder="◯◯ヘアサロン / 株式会社◯◯">
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label>ご担当者名 <span class="req">*</span></label>
+          <input type="text" id="contact" placeholder="山田 太郎">
+        </div>
+        <div class="field">
+          <label>電話番号 <span class="req">*</span></label>
+          <input type="tel" id="phone" placeholder="048-000-0000">
+        </div>
+      </div>
+      <div class="field">
+        <label>メールアドレス <span class="req">*</span></label>
+        <input type="email" id="email" placeholder="you@salon.jp">
+        <div class="hint">ログインIDとして使用します</div>
+      </div>
+      <div class="field" style="margin-top:20px"><label style="font-weight:600">サロン所在地</label></div>
+      <div class="row2">
+        <div class="field">
+          <label>郵便番号 <span class="req">*</span></label>
+          <input type="text" id="postal" inputmode="numeric" autocomplete="postal-code" placeholder="362-0000">
+        </div>
+        <div class="field">
+          <label>都道府県 <span class="req">*</span></label>
+          <select id="pref" autocomplete="address-level1"><option value="">選択してください</option><option>北海道</option><option>青森県</option><option>岩手県</option><option>宮城県</option><option>秋田県</option><option>山形県</option><option>福島県</option><option>茨城県</option><option>栃木県</option><option>群馬県</option><option>埼玉県</option><option>千葉県</option><option>東京都</option><option>神奈川県</option><option>新潟県</option><option>富山県</option><option>石川県</option><option>福井県</option><option>山梨県</option><option>長野県</option><option>岐阜県</option><option>静岡県</option><option>愛知県</option><option>三重県</option><option>滋賀県</option><option>京都府</option><option>大阪府</option><option>兵庫県</option><option>奈良県</option><option>和歌山県</option><option>鳥取県</option><option>島根県</option><option>岡山県</option><option>広島県</option><option>山口県</option><option>徳島県</option><option>香川県</option><option>愛媛県</option><option>高知県</option><option>福岡県</option><option>佐賀県</option><option>長崎県</option><option>熊本県</option><option>大分県</option><option>宮崎県</option><option>鹿児島県</option><option>沖縄県</option></select>
+        </div>
+      </div>
+      <div class="field">
+        <label>市区町村 <span class="req">*</span></label>
+        <input type="text" id="city" autocomplete="address-level2" placeholder="上尾市">
+      </div>
+      <div class="field">
+        <label>町名・番地 <span class="req">*</span></label>
+        <input type="text" id="addr1" autocomplete="address-line1" placeholder="仲町1-7-8">
+      </div>
+      <div class="field">
+        <label>建物名・部屋番号</label>
+        <input type="text" id="addr2" autocomplete="address-line2" placeholder="◯◯ビル 301（任意）">
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label>パスワード <span class="req">*</span></label>
+          <input type="password" id="pw" autocomplete="new-password" placeholder="8文字以上">
+        </div>
+        <div class="field">
+          <label>パスワード（確認） <span class="req">*</span></label>
+          <input type="password" id="pw2" autocomplete="new-password" placeholder="再入力">
+        </div>
+      </div>
+      <div class="field">
+        <label>備考（任意）</label>
+        <textarea id="note" placeholder="取扱希望商品、ご質問など"></textarea>
+      </div>
+      <button class="btn" id="go">この内容で申請する</button>
+    </div>
+
+    <div id="done" class="hidden" style="text-align:center;padding:20px 0">
+      <div class="msg ok" style="text-align:left">申請を受け付けました。当社にて確認のうえ、承認結果をメールでご連絡します。</div>
+      <a class="btn ghost" href="login.html" style="margin-top:8px">ログイン画面へ</a>
+    </div>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script>
+/* 郵便番号 → 住所の自動補完（zipcloud）。分割入力に対応 */
+function nxZipAuto(postalId, cityId, prefId, addr1Id){
+  const zi=document.getElementById(postalId);
+  const ci=document.getElementById(cityId), pi=prefId?document.getElementById(prefId):null;
+  const a1=addr1Id?document.getElementById(addr1Id):null;
+  if(!zi||!ci) return;
+  let last='';
+  const hint=document.createElement('div');
+  hint.className='hint'; hint.style.display='none'; hint.style.marginTop='6px';
+  zi.parentNode.appendChild(hint);
+  async function lookup(){
+    const z=zi.value.replace(/[^0-9]/g,'');
+    if(z.length!==7||z===last) return;
+    last=z;
+    hint.style.display='block'; hint.textContent='住所を検索しています…';
+    try{
+      const r=await fetch('https://zipcloud.ibsnet.co.jp/api/search?zipcode='+z);
+      const d=await r.json();
+      if(d.status===200&&d.results&&d.results.length){
+        const x=d.results[0];
+        if(pi) pi.value=x.address1;
+        ci.value=x.address2+x.address3;
+        zi.value=z.slice(0,3)+'-'+z.slice(3);
+        hint.textContent='番地・建物名を続けてご入力ください';
+        if(a1) a1.focus();
+      }else{
+        hint.textContent='該当する住所が見つかりませんでした。手入力してください';
+      }
+    }catch(e){ hint.textContent='住所の自動入力ができませんでした。手入力してください'; }
+  }
+  zi.addEventListener('input',lookup);
+  zi.addEventListener('blur',lookup);
+}
+</script>
+<script>
+const $=s=>document.querySelector(s);
+const REF=(new URLSearchParams(location.search).get('ref')||'').trim().toUpperCase();
+if(REF){
+  fetch(NX_API+'/api/ref/check?code='+encodeURIComponent(REF)).then(r=>r.json()).then(d=>{
+    const box=$('#refNote');
+    if(d.valid){box.innerHTML='紹介コード <b>'+REF+'</b>（'+String(d.name||'').replace(/[<>&]/g,'')+' 様のご紹介）でお申し込みいただきます。';}
+    else{box.innerHTML='紹介コード <b>'+REF+'</b> は確認できませんでした。紹介なしとしてお申し込みを続けられます。';}
+    box.classList.remove('hidden');
+  }).catch(()=>{});
+}
+const msg=$('#msg');
+function show(t,ok){msg.textContent=t;msg.className='msg '+(ok?'ok':'err')}
+async function apply(){
+  const v=id=>$('#'+id).value.trim();
+  const salon=v('salon'),contact=v('contact'),phone=v('phone'),email=v('email'),pw=$('#pw').value,pw2=$('#pw2').value;
+  const postal=v('postal'),pref=v('pref'),city=v('city'),addr1=v('addr1'),addr2=v('addr2');
+  const address=[pref,city,addr1,addr2].filter(Boolean).join(' ');
+  if(!salon||!contact||!phone||!email||!pw){show('必須項目をすべて入力してください');return}
+  if(!postal||!pref||!city||!addr1){show('所在地を最後までご入力ください');return}
+  if(pw.length<8){show('パスワードは8文字以上で設定してください');return}
+  if(pw!==pw2){show('パスワードが一致しません');return}
+  $('#go').disabled=true; msg.classList.add('hidden');
+  try{
+    const r=await fetch(NX_API+'/api/register',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({salon_name:salon,contact_name:contact,phone,email,postal,pref,city,addr1,addr2,address,pw,note:v('note'),ref:REF})});
+    const d=await r.json();
+    if(!r.ok){show(d.error||'申請に失敗しました');$('#go').disabled=false;return}
+    $('#form').classList.add('hidden'); $('#done').classList.remove('hidden');
+  }catch(e){show('サーバーに接続できません');$('#go').disabled=false}
+}
+$('#go').addEventListener('click',apply);
+nxZipAuto('postal','city','pref','addr1');
+</script>
+</body>
+</html>

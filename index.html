@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O2N｜ヘアケアブランド evev</title>
+<meta name="description" content="O2N｜ヘアケアブランド evev の企画・開発・販売。化粧品・医薬部外品・医療機器・ビューティーサロン・アニマルケアを横断する、美容と健康の総合事業。サロン専売プロダクトをオンラインでご発注いただけます。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=Noto+Serif+JP:wght@300;400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=20260814b">
+</head>
+<body>
+
+<header id="hdr">
+  <a href="#top" class="brand"><span class="brand-mark">O<em>2</em>N</span><span class="brand-sub">Total Beauty</span></a>
+  <nav class="main" id="navmenu">
+    <a href="#brands">Brands</a>
+    <a href="#voices">Voices</a>
+    <a href="#business">Business</a>
+    <a href="#leader">Leadership</a>
+    <a href="#company">Company</a>
+    <a href="#contact">Contact</a>
+    <a href="order/login.html" class="nav-cta">取引先ログイン</a>
+  </nav>
+  <button class="nav-toggle" id="navtoggle" aria-label="メニュー"><span></span><span></span></button>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+    <div class="hero-eyebrow"><span class="dash"></span>商品開発・製造の会社</div>
+  <h1>
+    <span class="line l1"><span>Beauty, refined</span></span>
+    <span class="line l2"><span>by <em>science</em>.</span></span>
+  </h1>
+  <p class="hero-lead">化粧品、医薬部外品、医療機器、サロン、アニマルケア。<br>商品の開発と製造を担い、ブランドを通じてお客様に届けます。</p>
+  <div class="hero-cta">
+    <a href="#brands" class="btn-rose">ブランドを見る <span>→</span></a>
+    <a href="order/login.html" class="btn-line">取引先の方はこちら</a>
+  </div>
+  <div class="hero-foot">
+    <div class="hero-stat"><div class="k">06</div><div class="l">事業領域 / Domains</div></div>
+    <div class="hero-stat"><div class="k">2026</div><div class="l">設立 / Founded</div></div>
+    <div class="hero-stat"><div class="k"><em>1</em></div><div class="l">ブランド / Brands</div></div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<div class="news">
+  <div class="inner">
+    <span class="lab">News</span>
+    <ul>
+      <li><span class="d">2026.06</span><span class="t">取引先様向けオンライン発注ポータルを開設しました</span></li>
+      <li><span class="d">2026.06</span><span class="t">コーポレートサイトを公開しました</span></li>
+      <li><span class="d">2026.06</span><span class="t">株式会社Next Innovation を設立しました</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- MESSAGE -->
+<section class="block message" id="message">
+  <div class="sec-head reveal"><span class="sec-num">01</span><span class="sec-label">Message</span><span class="sec-line"></span></div>
+  <div class="message-grid">
+    <div class="side reveal">Our promise —<br>the next standard<br>of beauty &amp; health.</div>
+    <div class="reveal">
+      <h2>つくるのは、<em>次</em>の常識。</h2>
+      <p>美しさの背景には、いつも科学があります。私たちはヘアケアやスキンケアといった身近な化粧品から、医薬部外品、医療機器、サロン運営、そして動物のためのケアまで、人と暮らしに寄り添う領域を一貫した品質基準のもとで手がけます。</p>
+      <p>初期段階では、処方開発・製造・品質管理は専門の製造パートナーと連携し、Next Innovationはブランドの企画、販売導線の設計、サロン・取引先との関係づくりに集中します。小さく確かに始め、信頼を積み重ねながら事業を広げていく——それが私たちの基本姿勢です。</p>
+      <p>一本の製品から、ひとつの店舗から。確かな手応えを起点に、美容と健康の「次のあたりまえ」を社会へ届けていきます。</p>
+    </div>
+  </div>
+</section>
+
+
+<style>
+.brand-cards{display:grid;grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto;gap:clamp(20px,3vw,34px);margin-top:clamp(36px,5vw,56px)}
+@media(max-width:820px){.brand-cards{grid-template-columns:1fr}}
+.bcard{display:block;text-decoration:none;color:inherit;background:var(--white);
+  border:1px solid var(--line);border-radius:4px;padding:clamp(34px,4vw,54px) clamp(24px,3vw,40px);
+  text-align:center;transition:border-color .3s, transform .3s}
+.bcard:hover{border-color:var(--rose);transform:translateY(-3px)}
+.bmark{width:clamp(190px,22vw,250px);height:clamp(190px,22vw,250px);margin:0 auto;border-radius:50%;
+  background:#F7CED2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.bmark .n1{font-family:var(--jp-serif,'Noto Serif JP',serif);font-size:clamp(24px,2.6vw,31px);
+  letter-spacing:.04em;line-height:1.25;color:#2B2226;font-weight:400}
+.bmark .n2{font-family:var(--serif);font-size:clamp(46px,5.4vw,64px);line-height:1;color:#6F4F57;font-weight:400}
+.bmark .tl{font-size:clamp(8px,.85vw,10px);letter-spacing:.24em;color:#6F4F57;margin-top:2px}
+.bmark .rule{width:52px;height:1px;background:#6F4F57;opacity:.55;margin-top:4px}
+.bcard .cap{margin-top:26px;font-size:11px;letter-spacing:.2em;color:var(--rose);text-transform:uppercase}
+.bcard h3{font-family:var(--jp-serif,'Noto Serif JP',serif);font-size:clamp(17px,1.9vw,21px);
+  font-weight:400;margin:10px 0 12px}
+.bcard p{font-size:13.5px;color:var(--ink-soft);line-height:1.95;max-width:420px;margin:0 auto}
+.bcard .more{margin-top:22px;display:inline-block;font-size:12.5px;color:var(--rose);
+  border-bottom:1px solid var(--rose);padding-bottom:2px}
+
+.iw-oval{position:relative;background:#FAF5EE;border:1px solid var(--line);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.iw-oval::before,.iw-oval::after{content:"";position:absolute;border:1.6px solid #E4B7B0;border-radius:50%;pointer-events:none}
+.iw-oval::before{inset:9% 16%}
+.iw-oval::after{inset:12% 19%;border-width:1px}
+.iw-oval .t1{font-family:var(--jp-serif,'Noto Serif JP',serif);font-weight:400;color:#4A342B;
+  line-height:1.24;letter-spacing:.06em}
+.iw-oval .t2{font-family:var(--sans,'Zen Kaku Gothic New',sans-serif);color:#5B4438;letter-spacing:.26em;margin-top:10px}
+.iw-oval .rule{height:1px;background:#D9A79F;margin-top:9px}
+
+
+  /* ---- evev ロゴ（正式仕様：#F7D6DE 地／#5A3D42 文字・装飾や枠は付けない） ---- */
+  .ev-logo{background:#F7D6DE;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:clamp(26px,3.4vw,44px) clamp(30px,4vw,54px);line-height:1}
+  .ev-logo .m{font-family:var(--serif);font-weight:300;color:#5A3D42;letter-spacing:.01em;line-height:1}
+  .ev-logo .s{font-family:var(--serif);color:#5A3D42;letter-spacing:.02em;margin-top:.42em}
+.dev-note{margin-top:clamp(34px,5vw,52px);border:1px solid var(--line);border-radius:4px;
+  background:var(--cream);padding:clamp(22px,3vw,32px);font-size:13px;color:var(--ink-soft);line-height:2}
+</style>
+<!-- BRANDS -->
+<section class="block alt" id="brands" style="max-width:none">
+  <div class="inner">
+    <div class="sec-head reveal"><span class="sec-num">02</span><span class="sec-label">Brands</span><span class="sec-line"></span></div>
+    <div class="salon-top reveal">
+      <h2>ブランド<em>。</em></h2>
+      <p>当社は商品の開発と製造を担い、販売はブランドを運営する会社が行います。</p>
+    </div>
+
+    <div class="brand-cards reveal">
+      
+
+      <a class="bcard" href="products/evev.html">
+        <div class="ev-logo" style="width:100%;max-width:360px;margin:0 auto">
+          <div class="m" style="font-size:clamp(46px,5.6vw,68px)">evev</div>
+          <div class="s" style="font-size:clamp(14px,1.6vw,19px)">Every &amp; Evolution</div>
+        </div>
+        <div class="cap">Home Care</div>
+        <h3>ホームケア・店販</h3>
+        <p>店販、EC、サロン直販など、さまざまな販売チャネルでお求めいただけるブランドです。サロン用の1,000mLもご用意しています。</p>
+        <span class="more">製品を見る　&rarr;</span>
+      </a>
+    </div>
+
+    <div class="dev-note reveal">
+      株式会社Next Innovation は、商品の企画・開発・製造管理と、それを支えるグループ基盤を担います。販売は各ブランドを運営する会社がそれぞれ独立して行い、売上・利益・顧客情報は会社ごとに分けて管理します。
+    </div>
+  </div>
+</section>
+
+<!-- VOICES -->
+<section class="block alt" id="voices" style="max-width:none">
+  <div class="inner">
+    <div class="sec-head reveal"><span class="sec-num">V</span><span class="sec-label">Voices</span><span class="sec-line"></span></div>
+    <div class="salon-top reveal">
+      <div class="eyebrow">Customer Reviews</div>
+      <h2>お使いいただいた方の声<em>。</em></h2>
+      <p>サロンで施術を受けられた方、ご自宅でお使いいただいた方からお寄せいただいたアンケートの集計です。掲載の同意をいただいたものだけを掲載しています。</p>
+    </div>
+
+
+    <div class="vo-track reveal">
+      <div><span class="big" id="voTreated">2,831</span><span class="unit">人</span></div>
+      <div class="lb">これまでにサロンで施術を受けられた方の人数です。<br>
+      サロン専売品として、多くの現場でお使いいただいてきました。</div>
+      <div class="as" id="voAsOf">※累計施術人数。</div>
+    </div>
+
+
+    <div class="vo-wrap reveal" id="voStats" style="display:none">
+      <div>
+        <div class="vo-score">
+          <span class="vo-stars"><span class="bg">★★★★★</span><span class="fg" id="voFg">★★★★★</span></span>
+          <span class="vo-num" id="voAvg">—</span>
+        </div>
+        <div class="vo-meta" id="voMeta"></div>
+        <div class="vo-dist" id="voDist"></div>
+        <div class="vo-imp" id="voImp"></div>
+      </div>
+      <div class="vo-cbox" id="voCardsWrap" style="display:none">
+        <div class="vo-chd" id="voCardsHd">お寄せいただいたご感想</div>
+        <div class="vo-cards" id="voCards"></div>
+      </div>
+    </div>
+
+
+    <div class="vo-cta reveal">
+      <div>
+        <h3>お使いになった感想を、お聞かせください。</h3>
+        <p>ご自宅でお使いいただいた方向けのアンケートです。2分ほどで終わります。お名前の記入は必要ありません。<br>
+        サロンで施術を受けられた方は、サロンでお渡しするQRからご記入ください。</p>
+        <div class="btns">
+          <a href="order/review-home.html" class="btn-rose">感想を書く <span>&rarr;</span></a>
+          <a href="https://www.instagram.com/infiniworld_crowdfunding?igsh=c2xrdGkwZHJhc3Jz&amp;utm_source=qr" target="_blank" rel="noopener" class="btn-line ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>Instagram</a>
+        </div>
+      </div>
+      <div class="vo-qr">
+        <img src="assets/qr-review.svg" alt="ご感想フォームのQRコード">
+        <span>スマートフォンで読み取る</span>
+      </div>
+    </div>
+
+    <div class="vo-note" id="voNote"></div>
+  </div>
+</section>
+
+<!-- BUSINESS -->
+<section class="block alt" id="business" style="max-width:none">
+  <div class="inner">
+    <div class="sec-head reveal"><span class="sec-num">03</span><span class="sec-label">Business Domains</span><span class="sec-line"></span></div>
+    <div class="biz-rows">
+      <div class="biz-row reveal"><div class="biz-visual"><div class="pic"><img src="assets/biz-cosmetics.jpg" alt="コスメティクス事業"></div></div><div class="biz-text"><div class="no">01</div><h3>コスメティクス事業</h3><span class="en">Cosmetics</span><p>一般用化粧品・化粧薬品、および化粧用エアゾール製品の企画・製造販売。ヘアケアを起点に、肌と髪のためのプロダクトを展開します。</p></div></div>
+      <div class="biz-row reveal"><div class="biz-visual"><div class="pic"><img src="assets/biz-pharma.jpg" alt="ファーマシューティカル事業"></div></div><div class="biz-text"><div class="no">02</div><h3>ファーマシューティカル事業</h3><span class="en">Pharmaceutical</span><p>医薬品および医薬部外品の製造販売。許認可と品質管理を前提に、効能と安全性を満たす製品づくりに取り組みます。</p></div></div>
+      <div class="biz-row reveal"><div class="biz-visual"><div class="pic"><img src="assets/biz-device.jpg" alt="メディカルデバイス事業"></div></div><div class="biz-text"><div class="no">03</div><h3>メディカルデバイス事業</h3><span class="en">Medical Devices</span><p>医療機器類の仕入・販売。医療・美容の現場で必要とされる機器を、信頼できる供給網を通じて届けます。</p></div></div>
+      <div class="biz-row reveal"><div class="biz-visual"><div class="pic"><img src="assets/biz-salon.jpg" alt="ビューティーサロン事業"></div></div><div class="biz-text"><div class="no">04</div><h3>ビューティーサロン事業</h3><span class="en">Salon Management</span><p>美容室・理容室の経営管理。プロダクトとサービスをつなぎ、現場から得た知見を製品開発へ還元します。</p></div></div>
+      <div class="biz-row reveal"><div class="biz-visual"><div class="pic"><img src="assets/biz-animal.jpg" alt="アニマルケア事業"></div></div><div class="biz-text"><div class="no">05</div><h3>アニマルケア事業</h3><span class="en">Animal Care</span><p>動物用医薬部外品の製造販売。人だけでなく、ともに暮らす動物の健やかさにも貢献する製品を手がけます。</p></div></div>
+      <div class="biz-row reveal"><div class="biz-visual"><div class="pic"><img src="assets/biz-retail.jpg" alt="リテール・トレーディング事業"></div></div><div class="biz-text"><div class="no">06</div><h3>リテール・トレーディング事業</h3><span class="en">Retail &amp; Trading</span><p>関連事業に係る店舗の経営、ならびに製品の輸出入。国内外の流通を通じて事業基盤を広げます。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section class="block alt" id="leader" style="max-width:none">
+  <div class="inner">
+    <div class="sec-head reveal"><span class="sec-num">04</span><span class="sec-label">Representative</span><span class="sec-line"></span></div>
+    <div class="leader-grid">
+      <div class="leader-portrait reveal">
+        <div class="frame"><img src="assets/okemoto-1.jpg" alt="代表取締役 桶本光司"></div>
+        <span class="cap">Representative Director</span>
+      </div>
+      <div class="leader-info reveal">
+        <div class="eyebrow">Founder &amp; Representative Director</div>
+        <div class="name">桶本 光司</div>
+        <div class="romaji">OKEMOTO MITSUSHI</div>
+        <p class="lead"><b>美容師として現場に立った日から、つくる側へ。</b></p>
+        <p class="lead">専門学校を卒業した1982年、自らのサロンを開業。以来40年以上にわたり、サロン経営とプロダクト開発の両輪で日本の美容業界を歩んできました。ヘアケアブランド「パイモア」、そしてサロン専売ブランド「ハホニコ」の創業をはじめ、数々のブランドを世に送り出してきた経験のすべてを、Next Innovation に注ぎ込みます。</p>
+        <div class="tl">
+          <div class="it"><span class="yr">1982</span><span class="ev">京都理美容専門学校 卒業　／　同年「<b>髪結処 異麗夢</b>」を開業</span></div>
+          <div class="it"><span class="yr">1992</span><span class="ev"><b>パイモア（PaiMore）</b> 立ち上げ・開発</span></div>
+          <div class="it"><span class="yr">1997</span><span class="ev"><b>株式会社ハホニコ（HAHONICO）</b> 設立・代表に就任</span></div>
+          <div class="it"><span class="yr">2002</span><span class="ev"><b>アレン</b> 開発</span></div>
+          <div class="it"><span class="yr">2003</span><span class="ev"><b>レガロア</b> 開業</span></div>
+          <div class="it"><span class="yr">2005</span><span class="ev"><b>十八番屋</b> 設立・代表に就任</span></div>
+          <div class="it now"><span class="yr">2026</span><span class="ev"><b>株式会社Next Innovation</b> 創業</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="leader-band quote-only reveal">
+      <div class="quote">
+        <div class="q">現場を知る者だけが、<br><em>次のスタンダード</em>を<br>つくれる。</div>
+        <div class="by">桶本 光司 — 代表取締役</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY -->
+<section class="block" id="company" style="max-width:none">
+  <div class="inner">
+    <div class="sec-head reveal"><span class="sec-num">05</span><span class="sec-label">Company Profile</span><span class="sec-line"></span></div>
+    <div class="profile-grid">
+      <div class="reveal">
+        <div class="profile-lead">A company built to <em>last</em>.</div>
+        <p class="profile-note">確かな品質と誠実な運営を基盤に、長く信頼される事業会社をめざします。</p>
+      </div>
+      <dl class="profile-table reveal">
+        <div class="row"><dt>商号</dt><dd>株式会社Next Innovation</dd></div>
+        <div class="row"><dt>所在地</dt><dd>埼玉県上尾市仲町1-7-8</dd></div>
+        <div class="row"><dt>設立</dt><dd>2026年6月9日 <span class="sm">（令和8年6月9日）</span></dd></div>
+        <div class="row"><dt>資本金</dt><dd>200万円</dd></div>
+        <div class="row"><dt>代表取締役</dt><dd>桶本 光司</dd></div>
+        <div class="row"><dt>事業年度</dt><dd>5月1日 〜 翌年4月30日</dd></div>
+        <div class="row"><dt>公告方法</dt><dd>電子公告</dd></div>
+        <div class="row"><dt>事業内容</dt><dd><ul>
+          <li>化粧品・化粧薬品・化粧用エアゾール製品の製造販売</li>
+          <li>医薬品・医薬部外品の製造販売</li>
+          <li>医療機器類の仕入販売</li>
+          <li>美容室・理容室の経営管理</li>
+          <li>動物用医薬部外品の製造販売</li>
+          <li>関連店舗の経営および輸出入</li>
+        </ul></dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="reveal">
+    <div class="eyebrow">Get in touch</div>
+    <h2>お問い合わせ<em>。</em></h2>
+    <p>製品・取引・協業に関するご相談を承っております。下記よりお気軽にご連絡ください。</p>
+
+    <div class="cform">
+      <div id="cmsg" class="cmsg"></div>
+      <div id="cform">
+        <div class="crow">
+          <div class="cfield"><label>お名前 <span>*</span></label><input type="text" id="c_name" placeholder="山田 太郎"></div>
+          <div class="cfield"><label>会社名・サロン名</label><input type="text" id="c_company" placeholder="任意"></div>
+        </div>
+        <div class="crow">
+          <div class="cfield"><label>メールアドレス <span>*</span></label><input type="email" id="c_email" placeholder="you@example.jp"></div>
+          <div class="cfield"><label>お電話番号</label><input type="tel" id="c_phone" placeholder="任意"></div>
+        </div>
+        <div class="cfield"><label>お問い合わせの種別</label>
+          <select id="c_cat">
+            <option>製品について</option>
+            <option>お取引について</option>
+            <option>サロン紹介制度について</option>
+            <option>OEM・協業のご相談</option>
+            <option>採用について</option>
+            <option>その他</option>
+          </select>
+        </div>
+        <div class="cfield"><label>お問い合わせ内容 <span>*</span></label><textarea id="c_msg" rows="5" placeholder="ご相談内容をご記入ください"></textarea></div>
+        <input type="text" id="c_web" class="cpot" tabindex="-1" autocomplete="off">
+        <div class="cfield" style="text-align:left;font-size:11px;color:var(--muted);line-height:1.9">
+          ご入力いただいた情報は、お問い合わせへの回答および当社からのご連絡にのみ利用します。
+        </div>
+        <button class="btn-rose" id="c_go" style="margin-top:8px">送信する <span>→</span></button>
+      </div>
+    </div>
+    <div class="cmail">お電話・メールでも承ります　<a href="mailto:info@tamjump.com">info@tamjump.com</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner-f">
+    <div>
+      <div class="f-brand">O<em>2</em>N</div>
+      <div class="f-meta">株式会社Next Innovation<br>埼玉県上尾市仲町1-7-8</div>
+    </div>
+    <div class="f-links">
+      <a href="products/evev.html">evev</a><a href="#company">Company</a><a href="https://www.instagram.com/infiniworld_crowdfunding?igsh=c2xrdGkwZHJhc3Jz&amp;utm_source=qr" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+  <div class="f-copy">© 2026 O2N. All rights reserved.</div>
+</footer>
+
+<script>
+  const hdr=document.getElementById('hdr');
+  addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>20));
+  const tg=document.getElementById('navtoggle'),nm=document.getElementById('navmenu');
+  tg.addEventListener('click',()=>nm.classList.toggle('open'));
+  nm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nm.classList.remove('open')));
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.14});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%3*60)+'ms';io.observe(el)});
+</script>
+<script src="order/config.js"></script>
+<script>
+(function(){
+  var $=function(x){return document.getElementById(x)};
+  var msg=$('cmsg');
+  function show(t,ok){msg.textContent=t;msg.className='cmsg '+(ok?'ok':'err')}
+  $('c_go').addEventListener('click',async function(){
+    var b={name:$('c_name').value.trim(),company:$('c_company').value.trim(),
+      email:$('c_email').value.trim(),phone:$('c_phone').value.trim(),
+      category:$('c_cat').value,message:$('c_msg').value.trim(),website:$('c_web').value};
+    if(!b.name||!b.email||!b.message){show('お名前・メールアドレス・お問い合わせ内容をご入力ください');return}
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(b.email)){show('メールアドレスをご確認ください');return}
+    $('c_go').disabled=true; show('送信しています…',true);
+    try{
+      var r=await fetch(window.NX_API+'/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});
+      var d=await r.json();
+      if(!r.ok){show(d.error||'送信できませんでした。お手数ですが info@tamjump.com までご連絡ください');$('c_go').disabled=false;return}
+      $('cform').style.display='none';
+      show('お問い合わせを受け付けました。確認のうえ、担当者よりご連絡いたします。',true);
+    }catch(e){show('送信できませんでした。お手数ですが info@tamjump.com までご連絡ください');$('c_go').disabled=false}
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var API  = 'https://zgrp36rmn0.execute-api.ap-northeast-1.amazonaws.com/prod/records';
+  var BASE = 'assets/reviews-base.json';
+  var MAXDAYS = 120;
+
+  function pad(n){ n=String(n); return n.length<2 ? '0'+n : n; }
+  function ymd(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function items(j){ return Array.isArray(j) ? j : (j.items||j.records||j.Items||j.data||[]); }
+  function kind(x){
+    if(x.type) return x.type;
+    var n=String(x.recNo||'');
+    if(n.indexOf('CUS-')===0) return 'salon_customer';
+    if(n.indexOf('HOM-')===0) return 'home_customer';
+    return 'staff';
+  }
+
+  function days(from){
+    var out=[], d0=new Date(from+'T00:00:00'), t=new Date();
+    for(var i=0;i<MAXDAYS;i++){
+      var d=new Date(d0.getTime()+i*86400000);
+      if(d>t) break;
+      out.push(ymd(d));
+    }
+    return out;
+  }
+
+  function jpDate(s){
+    var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||'');
+    return m ? m[1]+'年'+Number(m[2])+'月'+Number(m[3])+'日' : '';
+  }
+
+  function render(d){
+    if(d.treated) document.getElementById('voTreated').textContent = d.treated.toLocaleString();
+    var asOf=document.getElementById('voAsOf');
+    if(asOf){
+      var lb=jpDate(d.updatedAt);
+      asOf.textContent = lb ? '※'+lb+'時点の累計施術人数。' : '※累計施術人数。';
+    }
+    if(!d.n) return;
+    document.getElementById('voStats').style.display='';
+    var soon=document.getElementById('voSoon'); if(soon) soon.style.display='none';
+    document.getElementById('voAvg').textContent = d.avg.toFixed(2);
+    document.getElementById('voFg').parentNode.querySelector('.fg').style.width = (d.avg/5*100)+'%';
+    document.getElementById('voMeta').textContent =
+      '評価 ' + d.n.toLocaleString() + '件'
+      + (d.salonCount ? '　／　導入サロン ' + d.salonCount + '店舗' : '')
+      + '　／　' + d.updatedAt + ' 時点';
+    var dist=d.dist||{};
+    document.getElementById('voDist').innerHTML=[5,4,3,2,1].map(function(k){
+      var p=d.n?Math.round((dist[k]||0)/d.n*100):0;
+      return '<div class="r"><span class="lb">★'+k+'</span><span class="ba"><i style="width:'
+        +p+'%"></i></span><span class="pc">'+p+'%</span></div>';
+    }).join('');
+    document.getElementById('voImp').innerHTML=(d.impressions||[]).map(function(o){
+      return '<span>'+esc(o.label)+'<b>'+o.pct+'%</b></span>'; }).join('');
+    if(!(d.comments||[]).length) document.getElementById('voStats').style.gridTemplateColumns='1fr';
+    var cw=document.getElementById('voCardsWrap');
+    if(cw){
+      cw.style.display=(d.comments||[]).length?'':'none';
+      var h=document.getElementById('voCardsHd');
+      if(h) h.textContent='お寄せいただいたご感想　'+(d.comments||[]).length+'件';
+    }
+    document.getElementById('voCards').innerHTML=(d.comments||[]).map(function(c){
+      var sc=Math.max(1,Math.min(5,c.score||5));
+      var f='★★★★★'.slice(0,sc)+'☆☆☆☆☆'.slice(0,5-sc);
+      return '<div class="vo-card"><div class="cs">'+f+'</div><p>'+esc(c.text)
+        +'</p><div class="wh">'+esc(c.who)+'　—　'+esc(c.from)+'</div></div>';
+    }).join('');
+    document.getElementById('voNote').innerHTML=
+      '※サロン施術後および自宅使用のアンケートに基づく集計です（n='+d.n.toLocaleString()+'）。<br>'
+      +'※効果・実感には個人差があります。<br>'
+      +'※掲載についてご同意いただいた方のご感想のみを掲載しています。';
+  }
+
+  fetch(BASE+'?t='+Date.now()).then(function(r){ return r.ok?r.json():null; }).then(function(base){
+    if(!base) return;
+    var d0={5:0,4:0,3:0,2:0,1:0}, bd=base.dist||{};
+    [5,4,3,2,1].forEach(function(k){ d0[k]=Number(bd[k])||0; });
+    var shown={updatedAt:base.collectedUntil||'', treated:Number(base.treated)||0,
+               dist:d0, comments:(base.comments||[]).slice(), salonCount:0, impressions:[]};
+    function totals(o){
+      var n=0,s=0; [5,4,3,2,1].forEach(function(k){ n+=o.dist[k]; s+=k*o.dist[k]; });
+      o.n=n; o.avg=n?Math.round(s/n*100)/100:0; return o;
+    }
+    render(totals(shown));
+
+    var list=days(base.liveSince||base.collectedUntil||ymd(new Date()));
+    Promise.all(list.map(function(k){
+      return fetch(API+'?date='+k).then(function(r){ return r.ok?r.json():null; })
+        .then(function(j){ return j?items(j):[]; }).catch(function(){ return []; });
+    })).then(function(chunks){
+      var rows=[].concat.apply([],chunks);
+      if(!rows.length) return;
+      var salons={}, imp={}, cn=0, treated=shown.treated, cmts=[];
+      var skip={}; (base.exclude||[]).forEach(function(k){ skip[k]=1; });
+      function isTest(x){
+        if(x.test===true) return true;
+        if(skip[x.recNo]) return true;
+        var s=(x.place||'')+' '+(x.operator||'')+' '+(x.displayName||'');
+        return /テスト|test|TEST/.test(s);
+      }
+      var counted={};
+      var homeAsSalon = base.treatHomeAsSalon === true;
+      rows.forEach(function(x){
+        if(isTest(x)) return;
+        var t=kind(x);
+        if(homeAsSalon && t==='home_customer') t='salon_customer';
+        if(t==='staff'){
+          if(!counted[x.recNo]){ counted[x.recNo]=1; treated++; }
+          return;
+        }
+        // サロン施術の感想も施術1件として数える。
+        // 施術記録から発行されたQR経由（parentRecNo あり）は、その記録と二重に数えない。
+        if(t==='salon_customer'){
+          var key = x.parentRecNo || x.recNo;
+          if(!counted[key]){ counted[key]=1; treated++; }
+        }
+        if(x.snsOk==='掲載不可') return;
+        var v=Number(x.satisfaction)||0;
+        if(v>=1&&v<=5){ shown.dist[v]++; cn++; }
+        if(x.place) salons[x.place]=1;
+        (x.impressions||[]).forEach(function(l){ imp[l]=(imp[l]||0)+1; });
+        if(x.snsOk!=='写真のみ可（コメント不可）' && (x.comment||'').trim().length>6){
+          cmts.push({text:String(x.comment).trim().slice(0,120),
+            who:x.displayName||[x.ageGroup,x.hairLength].filter(Boolean).join('・')||'お客様',
+            score:v||5, from:t==='home_customer'?'自宅使用':'サロン施術'});
+        }
+      });
+      shown.treated=treated;
+      shown.updatedAt=ymd(new Date());
+      shown.salonCount=Object.keys(salons).length;
+      if(cn) shown.impressions=Object.keys(imp).map(function(k){
+        return {label:k, pct:Math.round(imp[k]/cn*100)}; })
+        .sort(function(a,b){ return b.pct-a.pct; }).slice(0,6);
+      shown.comments=cmts.concat(shown.comments).slice(0,200);
+      render(totals(shown));
+    });
+  }).catch(function(){});
+})();
+</script>
+</body>
+</html>

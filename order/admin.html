@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>管理コンソール｜Next Innovation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&family=Noto+Serif+JP:wght@300;400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="portal.css">
+</head>
+<body>
+<div class="p-head">
+  <a href="../index.html" class="p-brand">Next <em>Innovation</em><span class="tag">Admin</span></a>
+  <a href="records.html" style="margin-left:16px;font-size:12px;color:#C4506B;text-decoration:none;border:1px solid #C4506B;border-radius:16px;padding:5px 12px">施術記録・評価集計</a>
+  <div class="right"><span class="logout hidden" id="logout">ログアウト</span></div>
+</div>
+
+<!-- ログインゲート -->
+<div class="auth-wrap" id="gate">
+  <div class="auth-card">
+    <div class="auth-eyebrow">Administrator</div>
+    <h1>管理コンソール</h1>
+    <p class="sub">Next Innovation 管理者専用。</p>
+    <div id="amsg" class="msg err hidden"></div>
+    <div class="field"><label>ユーザー名</label><input type="text" id="au" autocomplete="username"></div>
+    <div class="field"><label>パスワード</label><input type="password" id="ap" autocomplete="current-password"></div>
+    <button class="btn" id="alogin">ログイン</button>
+  </div>
+</div>
+
+<!-- コンソール -->
+<div class="app hidden" id="console">
+  <div class="app-head"><h1>管理コンソール</h1></div>
+  <div class="app-sub">取引申請の承認、受注管理、製造会社への発注を行います。</div>
+  <div class="tabs">
+    <button class="tab active" data-p="apps">取引申請 <span id="badge" class="pill pending" style="margin-left:6px;display:none"></span></button>
+    <button class="tab" data-p="orders">受注</button>
+    <button class="tab" data-p="partners">取引先</button>
+    <button class="tab" data-p="products">商品</button>
+    <button class="tab" data-p="prod">製造発注</button>
+    <button class="tab" data-p="agents">紹介パートナー <span id="agBadge" class="pill pending" style="margin-left:6px;display:none"></span></button>
+    <button class="tab" data-p="rewards">紹介・進呈</button>
+    <button class="tab" data-p="contacts">お問い合わせ <span id="ctBadge" class="pill pending" style="margin-left:6px;display:none"></span></button>
+  </div>
+
+  <div class="panel active" id="p-apps">
+    <div id="appsLoad" class="center"><div class="spin"></div></div>
+    <table class="tbl hidden" id="appsTbl"><thead><tr><th>申請日</th><th>店舗・会社名</th><th>担当者</th><th>連絡先</th><th>所在地</th><th></th></tr></thead><tbody id="appsBody"></tbody></table>
+    <div class="empty hidden" id="appsEmpty">承認待ちの申請はありません。</div>
+  </div>
+
+  <div class="panel" id="p-orders">
+    <div class="toolbar"><div class="filter" id="ofilter">
+      <button class="on" data-s="">すべて</button><button data-s="received">受注</button><button data-s="production">製造発注済</button><button data-s="shipped">出荷済</button><button data-s="completed">完了</button>
+    </div><div class="sp"></div></div>
+    <div id="ordLoad" class="center"><div class="spin"></div></div>
+    <table class="tbl hidden" id="ordTbl"><thead><tr><th>注文番号</th><th>取引先</th><th>発注日</th><th>点数</th><th>金額</th><th>状況</th><th></th></tr></thead><tbody id="ordBody"></tbody></table>
+    <div class="empty hidden" id="ordEmpty">受注はありません。</div>
+  </div>
+
+  <div class="panel" id="p-partners">
+    <div id="prtLoad" class="center"><div class="spin"></div></div>
+    <table class="tbl hidden" id="prtTbl"><thead><tr><th>コード</th><th>店舗・会社名</th><th>担当者</th><th>連絡先</th><th>状態</th><th></th></tr></thead><tbody id="prtBody"></tbody></table>
+  </div>
+
+  <div class="panel" id="p-products">
+    <div class="toolbar"><div class="sp"></div><button class="btn sm" id="addProd">＋ 商品を追加</button></div>
+    <div id="pdLoad" class="center"><div class="spin"></div></div>
+    <table class="tbl hidden" id="pdTbl"><thead><tr><th>SKU</th><th>商品名</th><th>卸価格(税抜)</th><th>最低発注</th><th>入数</th><th>公開</th><th></th></tr></thead><tbody id="pdBody"></tbody></table>
+  </div>
+
+  <div class="panel" id="p-agents">
+    <div class="toolbar"><div class="filter" id="agfilter">
+      <button class="on" data-s="">すべて</button><button data-s="pending">承認待ち</button><button data-s="active">有効</button><button data-s="suspended">停止中</button><button data-s="closed">解約済</button><button data-s="rejected">却下</button>
+    </div><div class="sp"></div><button class="btn ghost sm" id="closeDorm">90日無実績を一括解約</button></div>
+    <div id="agLoad" class="center"><div class="spin"></div></div>
+    <table class="tbl hidden" id="agTbl"><thead><tr><th>コード</th><th>お名前・屋号</th><th>連絡先・住所</th><th>本人確認</th><th>単価</th><th>実績</th><th>状態</th><th></th></tr></thead><tbody id="agBody"></tbody></table>
+    <div class="empty hidden" id="agEmpty">該当する紹介パートナーはいません。</div>
+  </div>
+
+  <div class="panel" id="p-rewards">
+    <div class="toolbar"><div class="filter" id="rwfilter">
+      <button class="on" data-s="">すべて</button><button data-s="pending">未確定</button><button data-s="confirmed">確定</button><button data-s="paid">支払済</button>
+    </div><div class="sp"></div><button class="btn sm" id="addRw">＋ ボーナス・調整を追加</button></div>
+    <div id="rwLoad" class="center"><div class="spin"></div></div>
+    <table class="tbl hidden" id="rwTbl"><thead><tr><th>計上日</th><th>紹介者</th><th>注文番号</th><th>紹介先</th><th>本数</th><th>報酬</th><th>状態</th><th></th></tr></thead><tbody id="rwBody"></tbody></table>
+    <div class="empty hidden" id="rwEmpty">該当する報酬はありません。</div>
+  </div>
+
+  <div class="panel" id="p-contacts">
+    <div id="ctLoad" class="center"><div class="spin"></div></div>
+    <table class="tbl hidden" id="ctTbl"><thead><tr><th>受信日</th><th>お名前</th><th>連絡先</th><th>種別</th><th>内容</th><th>状態</th><th></th></tr></thead><tbody id="ctBody"></tbody></table>
+    <div class="empty hidden" id="ctEmpty">お問い合わせはありません。</div>
+  </div>
+
+  <div class="panel" id="p-prod">
+    <div id="poLoad" class="center"><div class="spin"></div></div>
+    <table class="tbl hidden" id="poTbl"><thead><tr><th>発注番号</th><th>製造会社</th><th>対象注文</th><th>状態</th><th>作成日</th></tr></thead><tbody id="poBody"></tbody></table>
+    <div class="empty hidden" id="poEmpty">製造発注はまだありません。</div>
+  </div>
+</div>
+
+<div class="ov hidden" id="ov"><div class="box" id="ovBox"></div></div>
+<footer class="p-foot">© 2026 Next Innovation Inc. — Admin Console</footer>
+
+<script src="config.js"></script>
+<script>
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+let TOKEN=localStorage.getItem('nx_admin');
+const yen=n=>Number(n||0).toLocaleString('ja-JP');
+const STAT={received:'受注',production:'製造発注済',shipped:'出荷済',completed:'完了',cancelled:'キャンセル'};
+const ASTAT={pending:'承認待ち',active:'有効',rejected:'却下',suspended:'停止'};
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function H(){return{'Authorization':'Bearer '+TOKEN,'Content-Type':'application/json'}}
+
+async function adminLogin(){
+  const u=$('#au').value.trim(),p=$('#ap').value;
+  if(!u||!p){return}
+  $('#alogin').disabled=true; $('#amsg').classList.add('hidden');
+  try{
+    const r=await fetch(NX_API+'/api/admin/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,pw:p})});
+    const d=await r.json();
+    if(!r.ok){$('#amsg').textContent=d.error||'ログインに失敗しました';$('#amsg').classList.remove('hidden');$('#alogin').disabled=false;return}
+    TOKEN=d.token; localStorage.setItem('nx_admin',TOKEN); enter();
+  }catch(e){$('#amsg').textContent='サーバーに接続できません';$('#amsg').classList.remove('hidden');$('#alogin').disabled=false}
+}
+$('#alogin').addEventListener('click',adminLogin);
+$('#ap').addEventListener('keydown',e=>{if(e.key==='Enter')adminLogin()});
+$('#logout').addEventListener('click',()=>{localStorage.removeItem('nx_admin');location.reload()});
+
+async function api(path,opt={}){
+  const r=await fetch(NX_API+path,{headers:H(),...opt});
+  if(r.status===401){localStorage.removeItem('nx_admin');location.reload();throw new Error('auth')}
+  return r;
+}
+
+function enter(){
+  $('#gate').classList.add('hidden'); $('#console').classList.remove('hidden'); $('#logout').classList.remove('hidden');
+  loadApps();
+}
+$$('.tab').forEach(t=>t.addEventListener('click',()=>{
+  $$('.tab').forEach(x=>x.classList.remove('active')); t.classList.add('active');
+  $$('.panel').forEach(p=>p.classList.remove('active')); $('#p-'+t.dataset.p).classList.add('active');
+  ({apps:loadApps,orders:loadOrders,partners:loadPartners,products:loadProducts,prod:loadPO,agents:loadAgents,rewards:loadRewards,contacts:loadContacts})[t.dataset.p]();
+}));
+
+
+/* ---------- 紹介パートナー ---------- */
+let AGF='', RWF='', AGENTS=[];
+const AGST={pending:'承認待ち',active:'有効',suspended:'停止中',rejected:'却下',closed:'解約済'};
+const KYC={none:'未提出',submitted:'確認待ち',verified:'確認済',rejected:'要再提出'};
+const KIND={individual:'個人',salon:'サロン',corp:'法人'};
+window.viewDoc=async (id,side)=>{
+  const r=await api('/api/admin/agents/'+id+'/doc/'+side);
+  if(!r.ok){const d=await r.json().catch(()=>({}));alert(d.error||'書類を表示できません');return}
+  const b=await r.blob(); const u=URL.createObjectURL(b);
+  window.open(u,'_blank','noopener'); setTimeout(()=>URL.revokeObjectURL(u),60000);
+};
+window.kyc=async (id,st)=>{
+  if(st==='verified'&&!confirm('書類の記載と登録内容が一致していることを確認しましたか？'))return;
+  const r=await api('/api/admin/agents/'+id+'/kyc',{method:'POST',body:JSON.stringify({id_doc_status:st})});
+  if(r.ok)loadAgents();
+};
+const RWST={pending:'未確定',confirmed:'確定',paid:'支払済',void:'無効'};
+$$('#agfilter button').forEach(b=>b.addEventListener('click',()=>{
+  $$('#agfilter button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); AGF=b.dataset.s; loadAgents();
+}));
+$$('#rwfilter button').forEach(b=>b.addEventListener('click',()=>{
+  $$('#rwfilter button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); RWF=b.dataset.s; loadRewards();
+}));
+
+async function loadAgents(){
+  $('#agLoad').classList.remove('hidden');$('#agTbl').classList.add('hidden');$('#agEmpty').classList.add('hidden');
+  const r=await api('/api/admin/agents'+(AGF?'?status='+AGF:'')); const d=await r.json(); const a=d.agents||[];
+  if(!AGF) AGENTS=a;
+  const pend=(AGF?a.filter(x=>x.status==='pending'):a.filter(x=>x.status==='pending')).length;
+  const b=$('#agBadge'); if(pend){b.textContent=pend;b.style.display='inline-block'}else b.style.display='none';
+  $('#agLoad').classList.add('hidden');
+  if(!a.length){$('#agEmpty').classList.remove('hidden');return}
+  $('#agTbl').classList.remove('hidden');
+  const dleft=x=>{const t=Date.parse(x.last_activity_at||x.approved_at||x.created_at);
+    if(isNaN(t))return null; return 90-Math.floor((Date.now()-t)/86400000)};
+  $('#agBody').innerHTML=a.map(x=>{
+    const dl=x.status==='active'?dleft(x):null;
+    return `<tr>
+    <td>${esc(x.agent_code||'—')}<br><span style="color:var(--stone);font-size:11px">${esc(KIND[x.kind]||x.kind||'')}</span></td>
+    <td>${esc(x.name)}${x.contact_name?'<br><span style="color:var(--stone);font-size:12px">'+esc(x.contact_name)+'</span>':''}${x.birthday?'<br><span style="color:var(--stone);font-size:11px">生年月日 '+esc(x.birthday)+'</span>':''}</td>
+    <td style="font-size:12px">${esc(x.email)}<br><span style="color:var(--stone)">${esc(x.phone||'')}</span><br><span style="color:var(--stone)">〒${esc(x.postal||'')} ${esc(x.address||'')}</span></td>
+    <td style="font-size:12px;white-space:nowrap">
+      <span class="pill ${x.id_doc_status==='verified'?'confirmed':x.id_doc_status==='rejected'?'void':'pending'}">${KYC[x.id_doc_status]||'未提出'}</span>
+      ${x.id_doc_type?'<br><span style="color:var(--stone);font-size:11px">'+esc(x.id_doc_type)+'</span>':''}
+      ${x.id_doc_front?`<br><button class="btn ghost sm" style="margin-top:6px" onclick="viewDoc(${x.id},'front')">表</button> ${x.id_doc_back?`<button class="btn ghost sm" onclick="viewDoc(${x.id},'back')">裏</button>`:''}`:''}
+      ${x.id_doc_front&&x.id_doc_status!=='verified'?`<br><button class="btn sm" style="margin-top:6px" onclick="kyc(${x.id},'verified')">本人確認OK</button>`:''}
+      ${x.id_doc_status==='verified'?`<br><button class="btn ghost sm" style="margin-top:6px" onclick="kyc(${x.id},'rejected')">取消</button>`:''}
+    </td>
+    <td class="amt">¥${yen(x.reward_per_unit)}</td>
+    <td>${yen(x.units)} 本<br><span class="amt" style="font-size:12px">¥${yen(x.amount)}</span><br><span style="color:var(--stone);font-size:11px">支払済 ¥${yen(x.paid)}</span>${dl!==null?`<br><span style="font-size:11px;color:${dl<=14?'var(--warn)':'var(--stone)'}">自動解約まで ${dl>0?dl:0}日</span>`:''}</td>
+    <td><span class="pill ${esc(x.status)}">${AGST[x.status]||esc(x.status)}</span>${x.close_reason?'<br><span style="color:var(--stone);font-size:11px">'+esc(x.close_reason)+'</span>':''}</td>
+    <td style="white-space:nowrap">
+      ${x.status==='pending'?`<button class="btn sm" onclick="agApprove(${x.id})">承認・コード発行</button> <button class="btn danger sm" onclick="agSet(${x.id},'reject')">却下</button>`:''}
+      ${x.status==='active'?`<button class="btn ghost sm" onclick="agRate(${x.id},${x.reward_per_unit})">単価</button> <button class="btn danger sm" onclick="agSet(${x.id},'suspend')">停止</button> <button class="btn danger sm" onclick="agSet(${x.id},'close')">解約</button>`:''}
+      ${x.status==='suspended'?`<button class="btn sm" onclick="agSet(${x.id},'activate')">再開</button> <button class="btn danger sm" onclick="agSet(${x.id},'close')">解約</button>`:''}
+    </td></tr>`}).join('');
+}
+window.agApprove=async id=>{if(!confirm('承認して紹介コードを発行しますか？登録メールへコードと紹介用リンクを送信します。'))return;
+  const r=await api('/api/admin/agents/'+id+'/approve',{method:'POST'}); const d=await r.json();
+  if(r.ok){alert('紹介コード '+d.agent_code+' を発行しました');loadAgents()}else alert(d.error||'エラー')};
+window.agSet=async (id,act)=>{const t={reject:'却下',suspend:'停止',activate:'再開',close:'解約'}[act];
+  if(!confirm(t+'しますか？登録メールへ通知が送信されます。'))return;
+  let reason='';
+  if(act!=='activate'){reason=prompt(t+'の理由（本人への通知に記載されます。空欄可）')||''}
+  const r=await api('/api/admin/agents/'+id+'/'+act,{method:'POST',body:JSON.stringify({reason})});
+  const d=await r.json().catch(()=>({}));
+  if(r.ok)loadAgents(); else alert(d.error||'エラー')};
+$('#closeDorm').addEventListener('click',async()=>{
+  if(!confirm('90日間ご紹介実績のない有効パートナーを一括で解約します。対象者へ通知メールが送信されます。よろしいですか？'))return;
+  const r=await api('/api/admin/agents/close-dormant',{method:'POST'});
+  const d=await r.json(); if(r.ok){alert(d.closed+'件を解約しました');loadAgents()}else alert(d.error||'エラー')});
+
+/* ---------- お問い合わせ ---------- */
+async function loadContacts(){
+  $('#ctLoad').classList.remove('hidden');$('#ctTbl').classList.add('hidden');$('#ctEmpty').classList.add('hidden');
+  const r=await api('/api/admin/contacts'); const d=await r.json(); const a=d.contacts||[];
+  $('#ctLoad').classList.add('hidden');
+  const nw=a.filter(x=>x.status==='new').length;
+  const b=$('#ctBadge'); if(nw){b.textContent=nw;b.style.display='inline-block'}else b.style.display='none';
+  if(!a.length){$('#ctEmpty').classList.remove('hidden');return}
+  $('#ctTbl').classList.remove('hidden');
+  $('#ctBody').innerHTML=a.map(x=>`<tr>
+    <td style="white-space:nowrap">${(x.created_at||'').slice(0,10)}</td>
+    <td>${esc(x.name)}${x.company?'<br><span style="color:var(--stone);font-size:12px">'+esc(x.company)+'</span>':''}</td>
+    <td style="font-size:12px"><a href="mailto:${esc(x.email)}" style="color:var(--coral)">${esc(x.email)}</a><br><span style="color:var(--stone)">${esc(x.phone||'')}</span></td>
+    <td style="font-size:12px">${esc(x.category||'')}</td>
+    <td style="font-size:12px;max-width:380px;white-space:pre-wrap">${esc(x.message)}</td>
+    <td><span class="pill ${x.status==='new'?'pending':'confirmed'}">${x.status==='new'?'未対応':'対応済'}</span></td>
+    <td>${x.status==='new'?`<button class="btn sm" onclick="ctDone(${x.id})">対応済</button>`:''}</td></tr>`).join('');
+}
+window.ctDone=async id=>{
+  const r=await api('/api/admin/contacts/'+id+'/status',{method:'POST',body:JSON.stringify({status:'done'})});
+  if(r.ok)loadContacts()};
+window.agRate=async (id,cur)=>{const v=prompt('ご紹介1件あたりの進呈本数',cur);
+  if(v===null)return; const n=parseInt(v); if(isNaN(n)||n<0){alert('数値を入力してください');return}
+  const r=await api('/api/admin/agents/'+id+'/rate',{method:'POST',body:JSON.stringify({reward_per_unit:n})});
+  if(r.ok)loadAgents()};
+
+async function loadRewards(){
+  $('#rwLoad').classList.remove('hidden');$('#rwTbl').classList.add('hidden');$('#rwEmpty').classList.add('hidden');
+  const r=await api('/api/admin/rewards'+(RWF?'?status='+RWF:'')); const d=await r.json(); const a=d.rewards||[];
+  $('#rwLoad').classList.add('hidden');
+  if(!a.length){$('#rwEmpty').classList.remove('hidden');return}
+  $('#rwTbl').classList.remove('hidden');
+  $('#rwBody').innerHTML=a.map(x=>`<tr>
+    <td>${(x.created_at||'').slice(0,10)}</td>
+    <td>${esc(x.agent_name)}<br><span style="color:var(--stone);font-size:12px">${esc(x.agent_code||'')}</span></td>
+    <td>${esc(x.order_no||(x.kind==='bonus'?'ボーナス':x.kind==='adjust'?'調整':'—'))}${x.memo?'<br><span style="color:var(--stone);font-size:12px">'+esc(x.memo)+'</span>':''}</td>
+    <td>${esc(x.salon_name||'—')}</td>
+    <td>${x.units?yen(x.units)+' 本':'—'}</td>
+    <td class="amt">¥${yen(x.amount)}</td>
+    <td><span class="pill ${esc(x.status)}">${RWST[x.status]||esc(x.status)}</span></td>
+    <td style="white-space:nowrap">
+      ${x.status==='pending'?`<button class="btn sm" onclick="rwSet(${x.id},'confirmed')">確定</button> <button class="btn danger sm" onclick="rwSet(${x.id},'void')">無効</button>`:''}
+      ${x.status==='confirmed'?`<button class="btn sm" onclick="rwSet(${x.id},'paid')">支払済</button>`:''}
+    </td></tr>`).join('');
+}
+window.rwSet=async (id,st)=>{const t={confirmed:'確定',paid:'支払済',void:'無効'}[st];
+  if(!confirm(t+'にしますか？'))return;
+  const r=await api('/api/admin/rewards/'+id+'/status',{method:'POST',body:JSON.stringify({status:st})});
+  if(r.ok)loadRewards()};
+$('#addRw').addEventListener('click',async()=>{
+  if(!AGENTS.length){const r=await api('/api/admin/agents');const d=await r.json();AGENTS=d.agents||[]}
+  const act=AGENTS.filter(x=>x.status==='active');
+  if(!act.length){alert('有効な紹介パートナーがいません');return}
+  const list=act.map((x,i)=>`${i+1}. ${x.agent_code||''} ${x.name}`).join('\n');
+  const sel=prompt('対象の番号を入力してください\n\n'+list);
+  if(sel===null)return; const idx=parseInt(sel)-1;
+  if(isNaN(idx)||!act[idx]){alert('番号が不正です');return}
+  const amt=prompt('金額（円）。マイナスも可');
+  if(amt===null)return; const n=parseInt(amt); if(isNaN(n)){alert('数値を入力してください');return}
+  const memo=prompt('メモ（例：10本達成ボーナス）')||'';
+  const r=await api('/api/admin/rewards',{method:'POST',body:JSON.stringify({agent_id:act[idx].id,amount:n,kind:n<0?'adjust':'bonus',memo})});
+  const d=await r.json(); if(r.ok){loadRewards()}else alert(d.error||'エラー');
+});
+
+/* 取引申請 */
+async function loadApps(){
+  $('#appsLoad').classList.remove('hidden');$('#appsTbl').classList.add('hidden');$('#appsEmpty').classList.add('hidden');
+  const r=await api('/api/admin/accounts?status=pending'); const d=await r.json(); const a=d.accounts||[];
+  const b=$('#badge'); if(a.length){b.textContent=a.length;b.style.display='inline-block'}else b.style.display='none';
+  $('#appsLoad').classList.add('hidden');
+  if(!a.length){$('#appsEmpty').classList.remove('hidden');return}
+  $('#appsTbl').classList.remove('hidden');
+  $('#appsBody').innerHTML=a.map(x=>`<tr>
+    <td>${(x.created_at||'').slice(0,10)}</td><td>${esc(x.salon_name)}</td><td>${esc(x.contact_name)}</td>
+    <td>${esc(x.email)}<br><span style="color:var(--stone)">${esc(x.phone||'')}</span></td>
+    <td style="font-size:12px;color:var(--stone)">${esc(x.postal?'〒'+x.postal+' ':'')}${esc(x.address||'')}${x.note?'<br>備考: '+esc(x.note):''}</td>
+    <td style="white-space:nowrap"><button class="btn sm" onclick="approve(${x.id})">承認</button> <button class="btn danger sm" onclick="reject(${x.id})">却下</button></td></tr>`).join('');
+}
+window.approve=async id=>{if(!confirm('この申請を承認しますか？取引先コードを発行します。'))return;
+  const r=await api('/api/admin/accounts/'+id+'/approve',{method:'POST'});const d=await r.json();
+  if(r.ok)alert('承認しました。取引先コード：'+d.code);else alert(d.error||'失敗');loadApps()}
+window.reject=async id=>{if(!confirm('この申請を却下しますか？'))return;
+  await api('/api/admin/accounts/'+id+'/reject',{method:'POST'});loadApps()}
+
+/* 受注 */
+let ofilter='';
+$('#ofilter').addEventListener('click',e=>{if(e.target.dataset.s===undefined)return;
+  $$('#ofilter button').forEach(b=>b.classList.remove('on'));e.target.classList.add('on');ofilter=e.target.dataset.s;loadOrders()});
+async function loadOrders(){
+  $('#ordLoad').classList.remove('hidden');$('#ordTbl').classList.add('hidden');$('#ordEmpty').classList.add('hidden');
+  const r=await api('/api/admin/orders'+(ofilter?'?status='+ofilter:'')); const d=await r.json(); const o=d.orders||[];
+  $('#ordLoad').classList.add('hidden');
+  if(!o.length){$('#ordEmpty').classList.remove('hidden');return}
+  $('#ordTbl').classList.remove('hidden');
+  $('#ordBody').innerHTML=o.map(x=>`<tr>
+    <td class="ono">${esc(x.order_no)}</td><td>${esc(x.salon_name)}</td><td>${(x.created_at||'').slice(0,10)}</td>
+    <td>${x.item_count}点</td><td class="amt">¥${yen(x.subtotal)}</td>
+    <td><span class="pill ${x.status}">${STAT[x.status]||x.status}</span></td>
+    <td><button class="btn ghost sm" onclick="oDetail('${esc(x.order_no)}')">詳細</button></td></tr>`).join('');
+}
+window.oDetail=async no=>{
+  $('#ov').classList.remove('hidden');$('#ovBox').innerHTML='<div class="center"><div class="spin"></div></div>';
+  const r=await api('/api/admin/orders/'+encodeURIComponent(no));const d=await r.json();const o=d.order;
+  const opts=Object.keys(STAT).map(s=>`<option value="${s}" ${o.status===s?'selected':''}>${STAT[s]}</option>`).join('');
+  $('#ovBox').innerHTML=`<span class="x" onclick="closeOv()">×</span><h2>${esc(o.order_no)}</h2>
+    <div class="dl"><dt>取引先</dt><dd>${esc(o.salon_name)}（${esc(o.code||'-')}）</dd>
+      <dt>発注日</dt><dd>${(o.created_at||'').slice(0,16).replace('T',' ')}</dd>
+      <dt>希望納品</dt><dd>${o.desired_date||'指定なし'}</dd><dt>備考</dt><dd>${esc(o.note||'—')}</dd></div>
+    <table class="tbl"><thead><tr><th>商品</th><th>単価</th><th>数量</th><th>金額</th></tr></thead>
+      <tbody>${(o.items||[]).map(i=>`<tr><td>${esc(i.product_name)}</td><td class="amt">¥${yen(i.unit_price)}</td><td>${i.qty}</td><td class="amt">¥${yen(i.amount)}</td></tr>`).join('')}</tbody></table>
+    <div style="text-align:right;margin:12px 0;font-family:var(--serif);font-size:20px">合計（税抜） ¥${yen(o.subtotal)}</div>
+    <div class="dl" style="grid-template-columns:1fr"><dt>状況の変更</dt><dd style="display:flex;gap:8px"><select id="ostat" style="flex:1;padding:10px;border:1px solid var(--line);background:var(--paper)">${opts}</select><button class="btn sm" onclick="setStat('${esc(o.order_no)}')">更新</button></dd></div>
+    <button class="btn" style="margin-top:8px" onclick="toPO('${esc(o.order_no)}')">この受注を製造会社へ発注</button>`;
+}
+window.setStat=async no=>{const s=$('#ostat').value;
+  await api('/api/admin/orders/'+encodeURIComponent(no)+'/status',{method:'POST',body:JSON.stringify({status:s})});
+  closeOv();loadOrders()}
+window.toPO=no=>{ $('#ovBox').innerHTML=`<span class="x" onclick="closeOv()">×</span><h2>製造発注</h2>
+  <p class="sub" style="margin:8px 0 20px">受注 ${esc(no)} を製造会社へ発注します。</p>
+  <div class="field"><label>製造会社名</label><input id="mname" placeholder="◯◯化粧品 株式会社"></div>
+  <div class="field"><label>製造会社メール（任意・通知送信）</label><input id="memail" placeholder="order@maker.co.jp"></div>
+  <div class="field"><label>指示・備考</label><textarea id="mnote" placeholder="数量・納期・ロットなど"></textarea></div>
+  <button class="btn" onclick="submitPO('${esc(no)}')">発注を確定する</button>`;}
+window.submitPO=async no=>{const mname=$('#mname').value.trim();if(!mname){alert('製造会社名を入力してください');return}
+  const r=await api('/api/admin/production-orders',{method:'POST',body:JSON.stringify({order_no:no,manufacturer:mname,manufacturer_email:$('#memail').value.trim(),note:$('#mnote').value.trim()})});
+  const d=await r.json();if(r.ok){alert('製造発注を作成しました。発注番号：'+d.po_no);closeOv();loadOrders()}else alert(d.error||'失敗')}
+window.closeOv=()=>$('#ov').classList.add('hidden');
+$('#ov').addEventListener('click',e=>{if(e.target.id==='ov')closeOv()});
+
+/* 取引先 */
+async function loadPartners(){
+  $('#prtLoad').classList.remove('hidden');$('#prtTbl').classList.add('hidden');
+  const r=await api('/api/admin/accounts'); const d=await r.json(); const a=d.accounts||[];
+  $('#prtLoad').classList.add('hidden');$('#prtTbl').classList.remove('hidden');
+  $('#prtBody').innerHTML=a.map(x=>`<tr><td class="ono">${esc(x.code||'—')}</td><td>${esc(x.salon_name)}</td><td>${esc(x.contact_name)}</td>
+    <td>${esc(x.email)}<br><span style="color:var(--stone)">${esc(x.phone||'')}</span></td>
+    <td><span class="pill ${x.status}">${ASTAT[x.status]||x.status}</span></td>
+    <td>${x.status==='active'?`<button class="btn danger sm" onclick="susp(${x.id},'suspend')">停止</button>`:x.status==='suspended'?`<button class="btn sm" onclick="susp(${x.id},'activate')">再開</button>`:''}</td></tr>`).join('')
+    ||'<tr><td colspan="6" class="empty">取引先がありません。</td></tr>';
+}
+window.susp=async(id,act)=>{await api('/api/admin/accounts/'+id+'/'+act,{method:'POST'});loadPartners()}
+
+/* 商品 */
+async function loadProducts(){
+  $('#pdLoad').classList.remove('hidden');$('#pdTbl').classList.add('hidden');
+  const r=await api('/api/admin/products'); const d=await r.json(); const p=d.products||[];
+  $('#pdLoad').classList.add('hidden');$('#pdTbl').classList.remove('hidden');
+  $('#pdBody').innerHTML=p.map(x=>`<tr><td>${esc(x.sku||'—')}</td><td>${esc(x.name)}<br><span style="color:var(--stone);font-size:12px">${esc(x.variant||'')}</span></td>
+    <td class="amt">${x.wholesale_price?'¥'+yen(x.wholesale_price):'<span class="pill pending">未設定</span>'}</td>
+    <td>${x.moq||1}${esc(x.unit||'本')}</td><td>${x.case_lot||1}</td>
+    <td><span class="pill ${x.active?'active':'rejected'}">${x.active?'公開':'非公開'}</span></td>
+    <td><button class="btn ghost sm" onclick='editProd(${JSON.stringify(x)})'>編集</button></td></tr>`).join('')
+    ||'<tr><td colspan="7" class="empty">商品がありません。</td></tr>';
+}
+$('#addProd').addEventListener('click',()=>editProd(null));
+window.editProd=p=>{const e=p||{};$('#ov').classList.remove('hidden');
+  $('#ovBox').innerHTML=`<span class="x" onclick="closeOv()">×</span><h2>${p?'商品を編集':'商品を追加'}</h2>
+  <div class="row2" style="margin-top:18px"><div class="field"><label>商品名</label><input id="f_name" value="${esc(e.name||'')}"></div>
+  <div class="field"><label>SKU</label><input id="f_sku" value="${esc(e.sku||'')}"></div></div>
+  <div class="field"><label>バリエーション・容量</label><input id="f_var" value="${esc(e.variant||'')}"></div>
+  <div class="row2"><div class="field"><label>卸価格（税抜・円）</label><input id="f_price" type="number" value="${e.wholesale_price||''}"></div>
+  <div class="field"><label>メーカー希望小売価格（税抜・円）</label><input id="f_retail" type="number" value="${e.retail_price||''}"></div></div>
+  <div class="row2"><div class="field"><label>単位</label><input id="f_unit" value="${esc(e.unit||'本')}"></div>
+  <div class="field"></div></div>
+  <div class="row2"><div class="field"><label>最低発注数</label><input id="f_moq" type="number" value="${e.moq||1}"></div>
+  <div class="field"><label>入数（発注単位）</label><input id="f_lot" type="number" value="${e.case_lot||1}"></div></div>
+  <div class="field"><label>説明</label><textarea id="f_desc">${esc(e.description||'')}</textarea></div>
+  <div class="field"><label><input type="checkbox" id="f_active" ${(!p||e.active)?'checked':''} style="width:auto;margin-right:8px">公開する（取引先に表示）</label></div>
+  <button class="btn" onclick="saveProd(${p?e.id:'null'})">保存</button>`;}
+window.saveProd=async id=>{const g=x=>$('#'+x).value.trim();
+  const body={id,name:g('f_name'),sku:g('f_sku'),variant:g('f_var'),wholesale_price:parseInt($('#f_price').value)||0,
+    retail_price:parseInt($('#f_retail').value)||0,
+    unit:g('f_unit')||'本',moq:parseInt($('#f_moq').value)||1,case_lot:parseInt($('#f_lot').value)||1,
+    description:g('f_desc'),active:$('#f_active').checked?1:0};
+  if(!body.name){alert('商品名を入力してください');return}
+  const r=await api('/api/admin/products',{method:'POST',body:JSON.stringify(body)});
+  if(r.ok){closeOv();loadProducts()}else{const d=await r.json();alert(d.error||'失敗')}}
+
+/* 製造発注一覧 */
+async function loadPO(){
+  $('#poLoad').classList.remove('hidden');$('#poTbl').classList.add('hidden');$('#poEmpty').classList.add('hidden');
+  const r=await api('/api/admin/production-orders'); const d=await r.json(); const o=d.production_orders||[];
+  $('#poLoad').classList.add('hidden');
+  if(!o.length){$('#poEmpty').classList.remove('hidden');return}
+  $('#poTbl').classList.remove('hidden');
+  $('#poBody').innerHTML=o.map(x=>`<tr><td class="ono">${esc(x.po_no)}</td><td>${esc(x.manufacturer)}</td>
+    <td>${esc(x.order_no||'—')}</td><td>${esc(x.status)}</td><td>${(x.created_at||'').slice(0,10)}</td></tr>`).join('');
+}
+
+if(TOKEN) enter();
+</script>
+</body>
+</html>
