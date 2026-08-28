@@ -9,39 +9,182 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=Noto+Serif+JP:wght@300;400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css?v=20260828o2nc">
+<style>
+/* ===== O2N header ===== */
+.o2h{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(18px,4vw,56px);height:86px;background:transparent;border-bottom:1px solid transparent;
+  transition:background .35s,border-color .35s,height .35s}
+.o2h.scrolled{height:66px;background:rgba(255,255,255,.94);backdrop-filter:blur(16px);border-bottom-color:var(--line)}
+.o2h-brand{display:flex;flex-direction:column;gap:4px;line-height:1}
+.o2h-brand .mk{font-family:var(--serif);font-weight:400;font-size:27px;letter-spacing:.02em;color:var(--ink)}
+.o2h-brand .mk sup{font-size:.52em;color:var(--rose);vertical-align:super;line-height:0}
+.o2h-brand .sb{display:flex;align-items:center;gap:8px;font-family:var(--jp-sans);font-size:9.5px;letter-spacing:.34em;color:var(--muted)}
+.o2h-brand .sb i{width:20px;height:1px;background:var(--rose);display:block}
+.o2h-nav{display:flex;align-items:center;gap:clamp(12px,2vw,28px)}
+.o2h-nav a{font-family:var(--serif);font-size:12.5px;letter-spacing:.16em;color:var(--ink-soft);position:relative;padding:5px 0;transition:color .2s}
+.o2h-nav a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--rose);transition:width .28s}
+.o2h-nav a:hover{color:var(--ink)}
+.o2h-nav a:hover::after{width:100%}
+.o2h-nav a.o2h-cta{font-family:var(--jp-sans);font-size:11.5px;letter-spacing:.1em;color:var(--rose);
+  border:1px solid var(--rose);border-radius:999px;padding:9px 20px;transition:background .25s,color .25s}
+.o2h-nav a.o2h-cta::after{display:none}
+.o2h-nav a.o2h-cta:hover{background:var(--rose);color:#fff}
+
+/* ===== O2N hero ===== */
+.o2hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  padding:120px clamp(20px,5vw,80px) 0;overflow:hidden;background:
+    radial-gradient(52% 48% at 76% 30%, rgba(224,160,176,.20) 0%, rgba(224,160,176,0) 68%),
+    linear-gradient(180deg,#fafafb 0%,#f3f3f5 58%,#ffffff 100%)}
+.o2hero::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:96px 96px;
+  -webkit-mask-image:radial-gradient(78% 70% at 62% 34%,#000 0%,transparent 76%);
+          mask-image:radial-gradient(78% 70% at 62% 34%,#000 0%,transparent 76%)}
+.o2hero>*{position:relative;z-index:2}
+
+.o2hero-rail{position:absolute;left:clamp(10px,2.2vw,30px);top:50%;transform:translateY(-50%);z-index:3;
+  display:flex;align-items:center;gap:18px;writing-mode:vertical-rl}
+.o2hero-rail span{font-family:var(--serif);font-size:10.5px;letter-spacing:.42em;color:var(--muted)}
+.o2hero-rail::after{content:"";width:1px;height:88px;background:linear-gradient(var(--rose),transparent)}
+@media(max-width:1180px){.o2hero-rail{display:none}}
+
+.o2hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.86fr);gap:clamp(24px,4vw,64px);
+  align-items:center;max-width:1320px;margin:0 auto;width:100%}
+@media(max-width:980px){.o2hero-grid{grid-template-columns:1fr;gap:44px}}
+
+.o2hero-idx{display:flex;align-items:center;gap:14px;font-family:var(--serif);font-size:11px;letter-spacing:.3em;
+  color:var(--muted);margin-bottom:26px;opacity:0;animation:rise .9s .1s forwards}
+.o2hero-idx b{font-weight:400;font-size:15px;color:var(--rose);font-style:italic}
+.o2hero-idx i{width:46px;height:1px;background:var(--line);display:block}
+
+.o2hero-h{font-family:var(--jp-serif);font-weight:300;color:var(--ink);
+  font-size:clamp(40px,6.6vw,96px);line-height:1.08;letter-spacing:.005em}
+.o2hero-h .ln{display:block;overflow:hidden}
+.o2hero-h .ln>span{display:block;opacity:0;transform:translateY(105%);animation:rise 1.05s .22s forwards}
+.o2hero-h .d2>span{animation-delay:.36s}
+.o2hero-h em{font-style:normal;color:var(--rose);position:relative;display:inline-block}
+.o2hero-h em .ul{position:absolute;left:-2%;bottom:-.1em;width:104%;height:.16em;color:var(--rose);opacity:.55}
+
+.o2hero-lead{margin-top:clamp(24px,3vw,38px);max-width:44em;font-size:14.5px;line-height:2.15;color:var(--ink-soft);
+  opacity:0;animation:rise 1s .62s forwards}
+.o2hero-lead .en{display:block;font-family:var(--serif);font-size:16px;letter-spacing:.03em;color:var(--ink);margin-bottom:12px}
+
+.o2hero-cta{display:flex;align-items:center;gap:clamp(16px,2.4vw,32px);flex-wrap:wrap;
+  margin-top:clamp(28px,3.4vw,44px);opacity:0;animation:rise 1s .76s forwards}
+.o2btn{display:inline-flex;align-items:center;gap:12px;background:var(--rose);color:#fff;
+  font-size:13px;letter-spacing:.1em;padding:16px 32px;border-radius:999px;transition:background .25s,transform .25s}
+.o2btn:hover{background:var(--rose-deep);transform:translateY(-2px)}
+.o2link{display:inline-flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.1em;color:var(--ink-soft);
+  border-bottom:1px solid var(--line);padding-bottom:5px;transition:color .25s,border-color .25s}
+.o2link:hover{color:var(--rose);border-color:var(--rose)}
+.o2link span,.o2btn span{transition:transform .25s}
+.o2link:hover span,.o2btn:hover span{transform:translateX(4px)}
+
+.o2hero-vis{position:relative;aspect-ratio:1/1.06;min-height:300px}
+@media(max-width:980px){.o2hero-vis{max-width:440px;margin:0 auto;width:100%}}
+.o2hero-vis .ring{position:absolute;border-radius:50%;border:1px solid var(--rose);opacity:.32}
+.o2hero-vis .r1{inset:2% 6% 6% 2%}
+.o2hero-vis .r2{inset:12% 16% 16% 12%;opacity:.18}
+.o2hero-vis .curve{position:absolute;left:-8%;right:-8%;bottom:8%;width:116%;height:56%;color:var(--rose)}
+.o2hero-arch{position:absolute;left:19%;right:19%;top:8%;bottom:12%;margin:0;overflow:hidden;
+  border-radius:999px 999px 10px 10px;box-shadow:0 22px 60px rgba(90,70,78,.14)}
+.o2hero-arch img{width:100%;height:100%;object-fit:cover;display:block}
+.o2hero-vis .eq{position:absolute;font-family:var(--serif);font-style:italic;font-size:clamp(11px,1.1vw,14px);
+  color:var(--muted);letter-spacing:.04em;white-space:nowrap}
+.o2hero-vis .e1{left:-2%;top:16%}
+.o2hero-vis .e2{right:0%;top:44%}
+.o2hero-vis .e3{left:4%;bottom:9%}
+.o2hero-vis .dot{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--rose);opacity:.5}
+.o2hero-vis .dot.d1{left:11%;top:34%}
+.o2hero-vis .dot.d2{right:9%;top:22%}
+.o2hero-vis .dot.d3{right:16%;bottom:16%}
+
+.o2hero-tick{margin-top:clamp(30px,4vw,54px);border-top:1px solid var(--line);overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.o2hero-tick .tk{display:flex;align-items:center;gap:26px;padding:16px 0;white-space:nowrap;
+  animation:o2tick 26s linear infinite}
+.o2hero-tick span{font-family:var(--serif);font-size:11.5px;letter-spacing:.3em;color:var(--muted)}
+.o2hero-tick i{width:5px;height:5px;border-radius:50%;background:var(--rose);opacity:.55;display:block}
+@keyframes o2tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){
+  .o2hero-tick .tk{animation:none}
+  .o2hero-h .ln>span,.o2hero-idx,.o2hero-lead,.o2hero-cta{opacity:1;transform:none;animation:none}
+}
+@media(max-width:900px){
+  .o2h{height:66px}
+  .o2h.scrolled{height:66px}
+  .o2hero{padding-top:96px}
+  .o2h-nav{position:fixed;inset:66px 0 auto 0;flex-direction:column;align-items:stretch;gap:0;
+    background:#fff;border-bottom:1px solid var(--line);padding:6px 0;transform:translateY(-130%);
+    transition:transform .35s;pointer-events:none}
+  .o2h-nav.open{transform:none;pointer-events:auto}
+  .o2h-nav a{padding:15px clamp(20px,5vw,52px);border-bottom:1px solid var(--line-soft);font-size:13.5px}
+  .o2h-nav a::after{display:none}
+  .o2h-nav a.o2h-cta{border-radius:0;border:none;margin:0;text-align:center;color:#fff;background:var(--rose)}
+}
+</style>
+
 </head>
 <body>
 
-<header id="hdr">
-  <a href="#top" class="brand"><span class="brand-mark">O<sup>2</sup>N</span><span class="brand-sub">オツナ</span></a>
-  <nav class="main" id="navmenu">
+<header id="hdr" class="o2h">
+  <a href="#top" class="o2h-brand">
+    <span class="mk">O<sup>2</sup>N</span>
+    <span class="sb"><i></i>オツナ</span>
+  </a>
+  <nav class="main o2h-nav" id="navmenu">
     <a href="#brands">Brands</a>
     <a href="#voices">Voices</a>
     <a href="#business">Business</a>
-    <a href="#leader">Leadership</a>
+    <a href="#leader">Team</a>
     <a href="#company">Company</a>
     <a href="#contact">Contact</a>
-    <a href="order/login.html" class="nav-cta">取引先ログイン</a>
+    <a href="order/login.html" class="o2h-cta">取引先ログイン</a>
   </nav>
   <button class="nav-toggle" id="navtoggle" aria-label="メニュー"><span></span><span></span></button>
 </header>
 
 <!-- HERO -->
-<section class="hero" id="top">
-    <div class="hero-eyebrow"><span class="dash"></span>方程式から生まれる、新しい商品開発</div>
-  <h1>
-    <span class="line l1"><span>数学で導く、</span></span>
-    <span class="line l2"><span>美の<em>方程式</em>。</span></span>
-  </h1>
-  <p class="hero-lead">Beauty engineered by mathematics.<br>感覚ではなく、数値と条件の設計から商品をつくります。</p>
-  <div class="hero-cta">
-    <a href="#brands" class="btn-rose">ブランドを見る <span>→</span></a>
-    <a href="order/login.html" class="btn-line">取引先の方はこちら</a>
+<section class="o2hero" id="top">
+  <div class="o2hero-rail" aria-hidden="true"><span>BEAUTY ENGINEERED BY MATHEMATICS</span></div>
+
+  <div class="o2hero-grid">
+    <div class="o2hero-copy">
+      <div class="o2hero-idx"><b>01</b><i></i>DESIGNED BY NUMBERS</div>
+      <h1 class="o2hero-h">
+        <span class="ln"><span>数学で導く、</span></span>
+        <span class="ln d2"><span>美の<em>方程式<svg class="ul" viewBox="0 0 300 12" preserveAspectRatio="none"><path d="M2 8 C 70 2, 150 12, 298 4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></em>。</span></span>
+      </h1>
+      <p class="o2hero-lead"><span class="en">Beauty engineered by mathematics.</span>
+        感覚ではなく、数値と条件の設計から商品をつくります。<br>
+        水分と脂質を層状に整えたラメラ構造で、乾かしたあとの手触りまで設計しています。</p>
+      <div class="o2hero-cta">
+        <a href="#brands" class="o2btn">ブランドを見る<span>→</span></a>
+        <a href="order/login.html" class="o2link">取引先ログイン<span>→</span></a>
+      </div>
+    </div>
+
+    <div class="o2hero-vis" aria-hidden="true">
+      <span class="ring r1"></span>
+      <span class="ring r2"></span>
+      <svg class="curve" viewBox="0 0 420 260" preserveAspectRatio="none">
+        <path d="M0 190 C 70 60, 150 250, 220 130 S 350 40, 420 96" fill="none" stroke="currentColor" stroke-width="1.1" opacity=".55"/>
+        <path d="M0 214 C 90 120, 170 230, 250 160 S 360 96, 420 140" fill="none" stroke="currentColor" stroke-width="1.1" opacity=".28"/>
+      </svg>
+      <figure class="o2hero-arch"><img src="assets/evev-kv.jpg" alt=""></figure>
+      <span class="eq e1">e<sup>iθ</sup> + 1 = 0</span>
+      <span class="eq e2">∇²φ = 0</span>
+      <span class="eq e3">d/dx ln(x) = 1/x</span>
+      <span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span>
+    </div>
   </div>
-  <div class="hero-foot">
-    <div class="hero-stat"><div class="k">06</div><div class="l">事業領域 / Domains</div></div>
-    <div class="hero-stat"><div class="k">2026</div><div class="l">設立 / Founded</div></div>
-    <div class="hero-stat"><div class="k"><em>1</em></div><div class="l">ブランド / Brands</div></div>
+
+  <div class="o2hero-tick" aria-hidden="true">
+    <div class="tk">
+      <span>LAMELLAR STRUCTURE</span><i></i><span>NO RINSE</span><i></i><span>SALON EXCLUSIVE</span><i></i><span>MADE IN JAPAN</span><i></i>
+      <span>LAMELLAR STRUCTURE</span><i></i><span>NO RINSE</span><i></i><span>SALON EXCLUSIVE</span><i></i><span>MADE IN JAPAN</span><i></i>
+    </div>
   </div>
 </section>
 
