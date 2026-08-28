@@ -33,13 +33,13 @@
 /* ===== O2N hero ===== */
 .o2hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;
   padding:120px clamp(20px,5vw,80px) 0;overflow:hidden;background:
-    radial-gradient(52% 48% at 76% 30%, rgba(224,160,176,.20) 0%, rgba(224,160,176,0) 68%),
-    linear-gradient(180deg,#fafafb 0%,#f3f3f5 58%,#ffffff 100%)}
-.o2hero::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;
+    radial-gradient(58% 54% at 74% 34%, rgba(224,160,176,.22) 0%, rgba(224,160,176,0) 70%),
+    linear-gradient(180deg,#fbfbfc 0%,#f2f2f4 56%,#ffffff 100%)}
+.o2hero::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
   background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
-  background-size:96px 96px;
-  -webkit-mask-image:radial-gradient(78% 70% at 62% 34%,#000 0%,transparent 76%);
-          mask-image:radial-gradient(78% 70% at 62% 34%,#000 0%,transparent 76%)}
+  background-size:104px 104px;
+  -webkit-mask-image:radial-gradient(80% 72% at 62% 36%,#000 0%,transparent 78%);
+          mask-image:radial-gradient(80% 72% at 62% 36%,#000 0%,transparent 78%)}
 .o2hero>*{position:relative;z-index:2}
 
 .o2hero-rail{position:absolute;left:clamp(10px,2.2vw,30px);top:50%;transform:translateY(-50%);z-index:3;
@@ -48,29 +48,33 @@
 .o2hero-rail::after{content:"";width:1px;height:88px;background:linear-gradient(var(--rose),transparent)}
 @media(max-width:1180px){.o2hero-rail{display:none}}
 
-.o2hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.86fr);gap:clamp(24px,4vw,64px);
+.o2hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);
   align-items:center;max-width:1320px;margin:0 auto;width:100%}
-@media(max-width:980px){.o2hero-grid{grid-template-columns:1fr;gap:44px}}
+@media(max-width:980px){.o2hero-grid{grid-template-columns:1fr;gap:36px}}
 
-.o2hero-idx{display:flex;align-items:center;gap:14px;font-family:var(--serif);font-size:11px;letter-spacing:.3em;
-  color:var(--muted);margin-bottom:26px;opacity:0;animation:rise .9s .1s forwards}
-.o2hero-idx b{font-weight:400;font-size:15px;color:var(--rose);font-style:italic}
-.o2hero-idx i{width:46px;height:1px;background:var(--line);display:block}
+.o2mark{display:flex;align-items:flex-end;gap:clamp(14px,1.8vw,26px);line-height:.9;
+  opacity:0;animation:rise 1s .12s forwards}
+.o2mark span{font-family:var(--serif);font-weight:300;font-size:clamp(74px,11vw,164px);
+  letter-spacing:.005em;color:var(--ink)}
+.o2mark span sup{font-size:.46em;color:var(--rose);vertical-align:super;line-height:0;margin-left:.02em}
+.o2mark em{font-style:normal;font-family:var(--jp-sans);font-size:clamp(11px,1.1vw,14px);
+  letter-spacing:.42em;color:var(--muted);padding-bottom:.9em}
 
-.o2hero-h{font-family:var(--jp-serif);font-weight:300;color:var(--ink);
-  font-size:clamp(40px,6.6vw,96px);line-height:1.08;letter-spacing:.005em}
-.o2hero-h .ln{display:block;overflow:hidden}
-.o2hero-h .ln>span{display:block;opacity:0;transform:translateY(105%);animation:rise 1.05s .22s forwards}
-.o2hero-h .d2>span{animation-delay:.36s}
-.o2hero-h em{font-style:normal;color:var(--rose);position:relative;display:inline-block}
-.o2hero-h em .ul{position:absolute;left:-2%;bottom:-.1em;width:104%;height:.16em;color:var(--rose);opacity:.55}
-
-.o2hero-lead{margin-top:clamp(24px,3vw,38px);max-width:44em;font-size:14.5px;line-height:2.15;color:var(--ink-soft);
-  opacity:0;animation:rise 1s .62s forwards}
-.o2hero-lead .en{display:block;font-family:var(--serif);font-size:16px;letter-spacing:.03em;color:var(--ink);margin-bottom:12px}
+.o2tag{margin-top:clamp(22px,2.8vw,36px);font-family:var(--jp-serif);font-weight:300;
+  font-size:clamp(23px,3.1vw,46px);line-height:1.5;letter-spacing:.05em;color:var(--ink);
+  opacity:0;animation:rise 1s .3s forwards}
+.o2tag em{font-style:normal;color:var(--rose)}
+.o2sub{margin-top:clamp(12px,1.4vw,18px);font-family:var(--jp-serif);font-weight:300;
+  font-size:clamp(14px,1.5vw,20px);letter-spacing:.09em;color:var(--ink-soft);
+  opacity:0;animation:rise 1s .44s forwards}
+.o2rule{display:block;width:clamp(56px,7vw,104px);height:1px;background:var(--rose);opacity:.7;
+  margin:clamp(22px,2.6vw,34px) 0 clamp(16px,1.8vw,22px);
+  opacity:0;animation:rise 1s .56s forwards}
+.o2en{font-family:var(--serif);font-size:clamp(11.5px,1.05vw,14px);letter-spacing:.28em;color:var(--rose);
+  opacity:0;animation:rise 1s .66s forwards}
 
 .o2hero-cta{display:flex;align-items:center;gap:clamp(16px,2.4vw,32px);flex-wrap:wrap;
-  margin-top:clamp(28px,3.4vw,44px);opacity:0;animation:rise 1s .76s forwards}
+  margin-top:clamp(30px,3.6vw,46px);opacity:0;animation:rise 1s .78s forwards}
 .o2btn{display:inline-flex;align-items:center;gap:12px;background:var(--rose);color:#fff;
   font-size:13px;letter-spacing:.1em;padding:16px 32px;border-radius:999px;transition:background .25s,transform .25s}
 .o2btn:hover{background:var(--rose-deep);transform:translateY(-2px)}
@@ -80,24 +84,27 @@
 .o2link span,.o2btn span{transition:transform .25s}
 .o2link:hover span,.o2btn:hover span{transform:translateX(4px)}
 
-.o2hero-vis{position:relative;aspect-ratio:1/1.06;min-height:300px}
-@media(max-width:980px){.o2hero-vis{max-width:440px;margin:0 auto;width:100%}}
-.o2hero-vis .ring{position:absolute;border-radius:50%;border:1px solid var(--rose);opacity:.32}
-.o2hero-vis .r1{inset:2% 6% 6% 2%}
-.o2hero-vis .r2{inset:12% 16% 16% 12%;opacity:.18}
-.o2hero-vis .curve{position:absolute;left:-8%;right:-8%;bottom:8%;width:116%;height:56%;color:var(--rose)}
-.o2hero-arch{position:absolute;left:19%;right:19%;top:8%;bottom:12%;margin:0;overflow:hidden;
-  border-radius:999px 999px 10px 10px;box-shadow:0 22px 60px rgba(90,70,78,.14)}
-.o2hero-arch img{width:100%;height:100%;object-fit:cover;display:block}
-.o2hero-vis .eq{position:absolute;font-family:var(--serif);font-style:italic;font-size:clamp(11px,1.1vw,14px);
-  color:var(--muted);letter-spacing:.04em;white-space:nowrap}
-.o2hero-vis .e1{left:-2%;top:16%}
-.o2hero-vis .e2{right:0%;top:44%}
-.o2hero-vis .e3{left:4%;bottom:9%}
-.o2hero-vis .dot{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--rose);opacity:.5}
-.o2hero-vis .dot.d1{left:11%;top:34%}
-.o2hero-vis .dot.d2{right:9%;top:22%}
-.o2hero-vis .dot.d3{right:16%;bottom:16%}
+/* 右：抽象コンポジション（写真なし） */
+.o2hero-vis{position:relative;aspect-ratio:1/.92;min-height:300px;color:var(--rose)}
+@media(max-width:980px){.o2hero-vis{max-width:460px;margin:0 auto;width:100%;aspect-ratio:1/.8}}
+.o2hero-vis .disc{position:absolute;left:22%;top:6%;width:56%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(60% 60% at 40% 34%, rgba(224,160,176,.30), rgba(224,160,176,.12) 60%, rgba(224,160,176,.04));
+  filter:blur(.2px)}
+.o2hero-vis .ring{position:absolute;border-radius:50%;border:1px solid currentColor;opacity:.3}
+.o2hero-vis .r1{left:14%;top:0%;width:72%;aspect-ratio:1}
+.o2hero-vis .r2{left:27%;top:11%;width:46%;aspect-ratio:1;opacity:.16}
+.o2hero-vis .wave{position:absolute;left:-12%;right:-12%;bottom:2%;width:124%;height:62%}
+.o2hero-vis .mol{position:absolute;right:2%;bottom:12%;width:34%;height:auto}
+.o2hero-vis .eq{position:absolute;font-family:var(--serif);font-style:italic;
+  font-size:clamp(11px,1.05vw,14px);color:var(--muted);letter-spacing:.04em;white-space:nowrap}
+.o2hero-vis .e1{left:-4%;top:20%}
+.o2hero-vis .e2{right:-2%;top:40%}
+.o2hero-vis .e3{left:0%;bottom:16%}
+.o2hero-vis .e4{right:6%;top:8%}
+.o2hero-vis .dot{position:absolute;width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.45}
+.o2hero-vis .dot.d1{left:20%;top:36%}
+.o2hero-vis .dot.d2{right:14%;top:24%}
+.o2hero-vis .dot.d3{right:26%;bottom:22%}
 
 .o2hero-tick{margin-top:clamp(30px,4vw,54px);border-top:1px solid var(--line);overflow:hidden;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
@@ -109,7 +116,7 @@
 @keyframes o2tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(prefers-reduced-motion:reduce){
   .o2hero-tick .tk{animation:none}
-  .o2hero-h .ln>span,.o2hero-idx,.o2hero-lead,.o2hero-cta{opacity:1;transform:none;animation:none}
+  .o2mark,.o2tag,.o2sub,.o2rule,.o2en,.o2hero-cta{opacity:1;transform:none;animation:none}
 }
 @media(max-width:900px){
   .o2h{height:66px}
@@ -151,14 +158,11 @@
 
   <div class="o2hero-grid">
     <div class="o2hero-copy">
-      <div class="o2hero-idx"><b>01</b><i></i>DESIGNED BY NUMBERS</div>
-      <h1 class="o2hero-h">
-        <span class="ln"><span>数学で導く、</span></span>
-        <span class="ln d2"><span>美の<em>方程式<svg class="ul" viewBox="0 0 300 12" preserveAspectRatio="none"><path d="M2 8 C 70 2, 150 12, 298 4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></em>。</span></span>
-      </h1>
-      <p class="o2hero-lead"><span class="en">Beauty engineered by mathematics.</span>
-        感覚ではなく、数値と条件の設計から商品をつくります。<br>
-        水分と脂質を層状に整えたラメラ構造で、乾かしたあとの手触りまで設計しています。</p>
+      <div class="o2mark"><span>O<sup>2</sup>N</span><em>オツナ</em></div>
+      <p class="o2tag"><em>数学</em>で導く、美の方程式。</p>
+      <p class="o2sub">方程式から生まれる、新しい商品開発。</p>
+      <span class="o2rule"></span>
+      <p class="o2en">Beauty engineered by mathematics.</p>
       <div class="o2hero-cta">
         <a href="#brands" class="o2btn">ブランドを見る<span>→</span></a>
         <a href="order/login.html" class="o2link">取引先ログイン<span>→</span></a>
@@ -166,16 +170,30 @@
     </div>
 
     <div class="o2hero-vis" aria-hidden="true">
+      <span class="disc"></span>
       <span class="ring r1"></span>
       <span class="ring r2"></span>
-      <svg class="curve" viewBox="0 0 420 260" preserveAspectRatio="none">
-        <path d="M0 190 C 70 60, 150 250, 220 130 S 350 40, 420 96" fill="none" stroke="currentColor" stroke-width="1.1" opacity=".55"/>
-        <path d="M0 214 C 90 120, 170 230, 250 160 S 360 96, 420 140" fill="none" stroke="currentColor" stroke-width="1.1" opacity=".28"/>
+      <svg class="wave" viewBox="0 0 460 300" preserveAspectRatio="none">
+        <g fill="none" stroke="currentColor">
+          <path d="M-10 208 C 80 108, 150 262, 236 176 S 372 74, 470 132" stroke-width="1.1" opacity=".55"/>
+          <path d="M-10 224 C 90 132, 168 268, 254 190 S 380 96, 470 150" stroke-width="1" opacity=".38"/>
+          <path d="M-10 240 C 100 158, 186 274, 272 204 S 390 120, 470 170" stroke-width="1" opacity=".24"/>
+          <path d="M-10 256 C 110 182, 204 280, 290 218 S 400 142, 470 188" stroke-width="1" opacity=".14"/>
+        </g>
       </svg>
-      <figure class="o2hero-arch"><img src="assets/evev-kv.jpg" alt=""></figure>
+      <svg class="mol" viewBox="0 0 160 120">
+        <g stroke="currentColor" stroke-width="1" fill="none" opacity=".55">
+          <path d="M30 84 L62 62 L96 76 L128 48"/><path d="M62 62 L58 28"/><path d="M96 76 L104 106"/>
+        </g>
+        <g fill="currentColor" opacity=".5">
+          <circle cx="30" cy="84" r="6"/><circle cx="62" cy="62" r="8"/><circle cx="96" cy="76" r="7"/>
+          <circle cx="128" cy="48" r="9"/><circle cx="58" cy="28" r="5"/><circle cx="104" cy="106" r="5"/>
+        </g>
+      </svg>
       <span class="eq e1">e<sup>iθ</sup> + 1 = 0</span>
       <span class="eq e2">∇²φ = 0</span>
       <span class="eq e3">d/dx ln(x) = 1/x</span>
+      <span class="eq e4">f(x) = Σ a<sub>n</sub>x<sup>n</sup></span>
       <span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span>
     </div>
   </div>
