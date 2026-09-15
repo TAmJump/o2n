@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=Noto+Serif+JP:wght@300;400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css?v=20260828gold">
+<link rel="stylesheet" href="assets/site.css?v=20260915pet">
 <style>
 /* ===== O2N header ===== */
 .o2h{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
@@ -235,12 +235,20 @@
 
 
 <style>
-.brand-cards{display:grid;grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto;gap:clamp(20px,3vw,34px);margin-top:clamp(36px,5vw,56px)}
-@media(max-width:820px){.brand-cards{grid-template-columns:1fr}}
+.brand-cards{display:grid;grid-template-columns:1fr 1fr;max-width:1000px;margin-left:auto;margin-right:auto;gap:clamp(20px,3vw,34px);margin-top:clamp(36px,5vw,56px)}
+@media(max-width:820px){.brand-cards{grid-template-columns:1fr;max-width:520px}}
 .bcard{display:block;text-decoration:none;color:inherit;background:var(--white);
   border:1px solid var(--line);border-radius:4px;padding:clamp(34px,4vw,54px) clamp(24px,3vw,40px);
   text-align:center;transition:border-color .3s, transform .3s}
 .bcard:hover{border-color:var(--rose);transform:translateY(-3px)}
+.bcard.soon{cursor:default;position:relative}
+.bcard.soon:hover{border-color:var(--line);transform:none}
+.bcard .shot{width:100%;max-width:300px;margin:0 auto;aspect-ratio:1/1.12;overflow:hidden;
+  border:1px solid var(--line);border-radius:3px;background:var(--cream)}
+.bcard .shot img{width:100%;height:100%;object-fit:cover;display:block}
+.soon-tag{display:inline-block;margin-top:22px;font-size:10.5px;letter-spacing:.24em;
+  color:var(--rose);border:1px solid var(--rose);border-radius:999px;padding:5px 16px}
+.bcard .soon-note{margin-top:14px;font-size:11.5px;color:var(--muted);letter-spacing:.04em}
 .bmark{width:clamp(190px,22vw,250px);height:clamp(190px,22vw,250px);margin:0 auto;border-radius:50%;
   background:#F7CED2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
 .bmark .n1{font-family:var(--jp-serif,'Noto Serif JP',serif);font-size:clamp(24px,2.6vw,31px);
@@ -287,7 +295,7 @@
       
 
       <a class="bcard" href="products/evev.html">
-        <div class="ev-logo" style="width:100%;max-width:360px;margin:0 auto">
+        <div class="ev-logo" style="width:100%;max-width:300px;margin:0 auto;aspect-ratio:1/1.12;justify-content:center">
           <div class="m" style="font-size:clamp(46px,5.6vw,68px)">evev</div>
           <div class="s" style="font-size:clamp(14px,1.6vw,19px)">Every &amp; Evolution</div>
         </div>
@@ -296,10 +304,19 @@
         <p>店販、EC、サロン直販など、さまざまな販売チャネルでお求めいただけるブランドです。サロン用の1,000mLもご用意しています。</p>
         <span class="more">製品を見る　&rarr;</span>
       </a>
+
+      <div class="bcard soon">
+        <div class="shot"><img src="assets/evev-pet.jpg" alt="evev Pet Grooming Mist"></div>
+        <div class="cap">Animal Care</div>
+        <h3>ペットグルーミングミスト</h3>
+        <p>犬・猫のためのグルーミングミスト。ブラッシング前後の毛づやと手ざわりを整えます。250mL スプレータイプ。</p>
+        <span class="soon-tag">COMING SOON</span>
+        <div class="soon-note">発売時期が決まり次第、こちらでご案内します。</div>
+      </div>
     </div>
 
     <div class="dev-note reveal">
-      タムジ株式会社は、ヘアケアブランド evev の企画・販売を担います。処方の開発と製造管理は開発責任者および製造パートナーが担当し、製造販売元はメディカ・ウェーブ株式会社です。
+      タムジ株式会社は、ヘアケアブランド evev の企画・販売を担います。処方の開発と製造管理は開発責任者および製造パートナーが担当し、製造販売元はクー・サイエンスビューティー株式会社です。
     </div>
   </div>
 </section>
@@ -359,7 +376,7 @@
       <div class="biz-row reveal"><div class="biz-visual"><div class="pic"><img src="assets/biz-pharma.jpg" alt="ファーマシューティカル事業"></div></div><div class="biz-text"><div class="no">02</div><h3>ファーマシューティカル事業</h3><span class="en">Pharmaceutical</span><p>医薬品および医薬部外品の製造販売。許認可と品質管理を前提に、効能と安全性を満たす製品づくりに取り組みます。</p></div></div>
       <div class="biz-row reveal"><div class="biz-visual"><div class="pic"><img src="assets/biz-device.jpg" alt="メディカルデバイス事業"></div></div><div class="biz-text"><div class="no">03</div><h3>メディカルデバイス事業</h3><span class="en">Medical Devices</span><p>医療機器類の仕入・販売。医療・美容の現場で必要とされる機器を、信頼できる供給網を通じて届けます。</p></div></div>
       <div class="biz-row reveal"><div class="biz-visual"><div class="pic"><img src="assets/biz-salon.jpg" alt="ビューティーサロン事業"></div></div><div class="biz-text"><div class="no">04</div><h3>ビューティーサロン事業</h3><span class="en">Salon Management</span><p>美容室・理容室の経営管理。プロダクトとサービスをつなぎ、現場から得た知見を製品開発へ還元します。</p></div></div>
-      <div class="biz-row reveal"><div class="biz-visual"><div class="pic"><img src="assets/biz-animal.jpg" alt="アニマルケア事業"></div></div><div class="biz-text"><div class="no">05</div><h3>アニマルケア事業</h3><span class="en">Animal Care</span><p>動物用医薬部外品の製造販売。人だけでなく、ともに暮らす動物の健やかさにも貢献する製品を手がけます。</p></div></div>
+      <div class="biz-row reveal"><div class="biz-visual"><div class="pic"><img src="assets/biz-animal.jpg" alt="アニマルケア事業"></div></div><div class="biz-text"><div class="no">05</div><h3>アニマルケア事業</h3><span class="en">Animal Care</span><p>犬・猫のためのグルーミング製品と動物用医薬部外品の製造販売。ともに暮らす動物の健やかさにも貢献する製品を手がけます。</p></div></div>
       <div class="biz-row reveal"><div class="biz-visual"><div class="pic"><img src="assets/biz-retail.jpg" alt="リテール・トレーディング事業"></div></div><div class="biz-text"><div class="no">06</div><h3>リテール・トレーディング事業</h3><span class="en">Retail &amp; Trading</span><p>関連事業に係る店舗の経営、ならびに製品の輸出入。国内外の流通を通じて事業基盤を広げます。</p></div></div>
     </div>
   </div>
