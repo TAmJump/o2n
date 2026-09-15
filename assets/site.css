@@ -1,16 +1,16 @@
 
   :root{
     --white:#ffffff;
-    --cream:#f3f3f5;        /* ライトグレー：セクション地 */
-    --panel:#ececef;        /* ライトグレー：パネル */
-    --blush:#e4e4e8;
-    --line:#e9e9ec;
-    --line-soft:#f2f2f4;
-    --rose:#e0a0b0;         /* アクセント：ロゴのピンク */
-    --rose-deep:#c8808f;
-    --ink:#3a3a3c;          /* 文字：ニュートラルなチャコール */
-    --ink-soft:#5c5c60;
-    --muted:#9a9aa0;
+    --cream:#fbf8f3;        /* アイボリー：セクション地 */
+    --panel:#efe6dc;        /* ベージュ：パネル */
+    --blush:#eadfd2;
+    --line:#e5d8cc;
+    --line-soft:#f1e8de;
+    --rose:#b89162;         /* アクセント：シャンパンゴールド */
+    --rose-deep:#9c7645;
+    --ink:#3b2922;          /* 文字：ダークブラウン */
+    --ink-soft:#5a4a40;
+    --muted:#786b63;
     --serif:'Fraunces',serif;
     --jp-serif:'Noto Serif JP',serif;
     --jp-sans:'Zen Kaku Gothic New',sans-serif;
@@ -468,3 +468,9 @@
     border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);letter-spacing:.06em}
   .rv-dist .tt b{font-family:var(--serif);font-size:19px;color:var(--ink);font-weight:400;flex:1}
   .rv-note{margin-top:26px;font-size:11px;color:var(--muted);line-height:1.95;letter-spacing:.04em}
+
+
+  /* ---- Global map ---- */
+  .gmap{margin:0;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:var(--white);
+    box-shadow:0 18px 45px rgba(72,48,34,.08)}
+  .gmap img{width:100%;height:auto;display:block}
